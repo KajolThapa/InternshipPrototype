@@ -1,1 +1,12 @@
-hello
+<form novalidate method="POST" action="/setDepartment" name="departmentForm">
+  <input list="department"/>
+  <datalist id="department">
+    <option value="CST">
+    <option value="ENG">
+    <option value="PHYS">
+    <option value="THE">
+    <option value="MAT">
+  </datalist>
+  <!-- the value for the submit is what determines what's passed to body parser -->
+  <input name="sample" value="department" type="submit">
+</form>
