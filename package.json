@@ -1,0 +1,25 @@
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.0",
+    "connect-assets": "^5.4.0",
+    "ejs-mate": "^2.3.0",
+    "express": "^4.15.4",
+    "express-flash": "0.0.2",
+    "express-validator": "^4.1.1",
+    "fs": "0.0.1-security",
+    "morgan": "^1.8.2",
+    "path": "^0.12.7",
+    "pg": "^7.3.0",
+    "sequelize": "^4.8.2"
+  }
+}
