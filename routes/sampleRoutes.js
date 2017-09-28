@@ -16,6 +16,18 @@ router.get('/form', function(req, res){
   });
 });
 
+router.get('/a', function(req, res){
+  return res.render('forms/sampleA',{
+    title:'sample form a'
+  });
+});
+
+router.get('/b', function(req, res){
+  return res.render('forms/sampleB',{
+    title:'Sample form b'
+  });
+});
+
 router.post('/setDepartment', function(req, res){
   var department = req.body.sample;
   // Need to resolve accessing datalist object
