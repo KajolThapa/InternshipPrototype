@@ -11,7 +11,9 @@ app.use(bodyParser.urlencoded({
 }));
 
 router.get('/form', function(req, res){
-  return res.render('layout');
+  return res.render('forms/login',{
+    title:'login'
+  });
 });
 
 router.post('/setDepartment', function(req, res){

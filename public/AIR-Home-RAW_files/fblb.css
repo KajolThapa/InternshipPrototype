@@ -1,0 +1,155 @@
+.fblbCenterOuter * { 
+	margin: 0; 
+	padding: 0; 
+	border: 0;   
+	font-size: 100%;
+	font-weight: inherit;
+	font-style: inherit; 
+	line-height: 1;
+}
+.fblbCenterOuter {
+	position: fixed;
+	top: 0;
+	height:100%;
+	display:table;
+	vertical-align:middle;
+	z-index: 10000;
+}
+.fblbCenterInner {
+	position:relative;
+	vertical-align:middle;
+	display:table-cell;
+}
+/* Fixed top */
+.fblbCenterOuter.fblbFixed {
+	position: fixed;
+	top: 0;
+	height: auto;
+	display: block;
+	vertical-align: top;
+	z-index: 1000;
+}
+.fblbFixed .fblbCenterInner {
+}
+
+.fblbWrap {
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: left;
+	position: relative;
+}
+.fblbRight .fblbForm {
+	margin-left: 60px;
+}
+.fblbHead {
+	position: absolute;
+	z-index: 9999;
+	top: 50%;
+	display: block;
+	text-indent: -9999em;
+	overflow: hidden;
+	cursor: pointer;
+}
+.fblbForm {
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+.fblbInner {
+	min-height:150px;
+	position: relative;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.fblbHeader {
+	font-size: 12px;
+	line-height: 16px;
+	font-weight: bold;
+	margin-bottom: 15px;
+	text-transform: uppercase;
+}
+/*
+.fblbInnerlight {
+	background: #fff;
+}
+.fblbInnerdark {
+	background: #333;
+}
+.fblbTheme0 .fblbForm {
+	background: #3b5998;
+}
+*/
+/* Tabs */
+/* Tab1 - Right */
+.fblbRight .fblbTab1 .fblbHead {
+	width: 48px;
+	height: 155px;
+	background: url(img/fb1-right.png);
+}
+/* Tab2 - Right */
+.fblbRight .fblbTab2 .fblbHead {
+	width: 48px;
+	height: 155px;
+	background: url(img/fb2-right.png);
+}
+/* Tab3 - Right */
+.fblbRight .fblbTab3 .fblbHead {
+	width:  58px;
+	height: 60px;
+	background: url(img/fb3-right.png);
+}
+/* Tab1 - Right */
+.fblbRight .fblbTab4 .fblbHead {
+	width: 48px;
+	height: 155px;
+	background: url(img/fb4-right.png);
+}
+/* Tab2 - Right */
+.fblbRight .fblbTab5 .fblbHead {
+	width: 48px;
+	height: 155px;
+	background: url(img/fb5-right.png);
+}
+/* Tab3 - Right */
+.fblbRight .fblbTab6 .fblbHead {
+	width:  58px;
+	height: 60px;
+	background: url(img/fb6-right.png);
+}
+
+/* Tab1 - Left */
+.fblbLeft .fblbTab1 .fblbHead {
+	width: 48px;
+	height: 155px;
+	background: url(img/fb1-left.png);
+}
+/* Tab2 - Left */
+.fblbLeft .fblbTab2 .fblbHead {
+	width: 48px;
+	height: 155px;
+	background: url(img/fb2-left.png);
+}
+/* Tab3 - Left */
+.fblbLeft .fblbTab3 .fblbHead {
+	width:  58px;
+	height: 60px;
+	background: url(img/fb3-left.png);
+}
+.fblbLeft .fblbTab4 .fblbHead {
+	width: 48px;
+	height: 155px;
+	background: url(img/fb4-left.png);
+}
+/* Tab2 - Left */
+.fblbLeft .fblbTab5 .fblbHead {
+	width: 48px;
+	height: 155px;
+	background: url(img/fb5-left.png);
+}
+/* Tab3 - Left */
+.fblbLeft .fblbTab6 .fblbHead {
+	width:  58px;
+	height: 60px;
+	background: url(img/fb6-left.png);
+}

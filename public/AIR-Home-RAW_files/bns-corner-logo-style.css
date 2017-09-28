@@ -1,0 +1,99 @@
+/**
+ * This file is part of BNS Corner Logo.
+ *
+ * Copyright 2009-2016  Edward Caissie  (email : edward.caissie@gmail.com)
+ *
+ * BNS Corner Logo is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License, version 2, as published
+ * by the Free Software Foundation.
+ *
+ * You may NOT assume that you can use any other version of the GPL.
+ *
+ * BNS Corner Logo is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * this program; if not, write to the
+ *
+ *      Free Software Foundation, Inc.
+ *      51 Franklin St, Fifth Floor,
+ *      Boston, MA  02110-1301  USA
+ *
+ * @version 1.7
+ * @date    November 21, 2012
+ * Adjusted top position if user is logged-in
+ *
+ * @version 1.8
+ * @date    January 27, 2013
+ * Address "smart-phone" screens being obfuscated by image
+ * Removed `width: 100%` from `div.bns-logo a img`
+ *
+ * @version 1.8.1
+ * @date    February 21, 2013
+ * Revert - Removed `width: 100%` from `div.bns-logo a img`
+ *
+ * @version 1.8.2
+ * @date    May 21, 2013
+ * Optimization and formatting
+ */
+
+/** BNS Corner Logo CSS */
+div.bns-logo {
+	text-align: center;
+	position: relative;
+	z-index: 10000;
+}
+
+div.bns-logo .avatar {
+	float: none;
+	margin: 0;
+	width: auto;
+}
+
+div.bns-logo a img {
+	background: none;
+	border: none;
+	width: 100%;
+	text-decoration: none;
+}
+
+/** Positioning for the corners */
+div.bns-logo.fixed-bottom-right {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+}
+
+div.bns-logo.fixed-bottom-left {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+}
+
+div.bns-logo.fixed-top-right {
+	position: fixed;
+	top: 0;
+	right: 0;
+}
+
+div.bns-logo.fixed-top-left {
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+/** Adjust top position if user is logged-in */
+.logged-in div.bns-logo.fixed-top-right,
+.logged-in div.bns-logo.fixed-top-left {
+	top: 28px;
+}
+
+/** Smartphones (portrait) */
+@media only screen and ( max-width: 320px ) {
+	/** Do not display logo */
+	div.bns-logo {
+		display: none;
+	}
+}
