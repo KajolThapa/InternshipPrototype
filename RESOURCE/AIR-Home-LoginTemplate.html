@@ -2879,144 +2879,84 @@
 						<div id="post-2" class="post-2 page type-page status-publish hentry p publish first-page untagged">
 							<div class='entry-content article'>
 								
+					
+
 									<!-- RENDERED FORMS GO HERE!!!!!!!!!!!!!!!!!!!-->
 
 
-	<div class = "formHeader">								
-					  <h1>Best Colleges - Main Survey</h2> </br>
-	</div>
-					  <h1>Admission Requirements</h1>
+<form name="loginForm" action="/AIR-Home-Template.html" method="get">
 
-	</br></br>
+            <div class="row">
+                      <div class="col-md-12">
+                        <form class="form-group">
+                          <div class="col-md-4"><label for="Department"><strong>Select Department:</strong></label></div>
+                          <div class="col-md-6">
+                             <select name="Department" class="form-control c-square c-theme" ng-model="searchKeyword.Dept_ID2" ng-init="searchKeyword.Dept_ID2=''" id="Department">
+                              <option value="">All Departments</option>
+                              
+                              <option ng-repeat="Department in Departments | orderBy:'dept_name'" ng-if="Department.freq_used_num != 'yes'" value="{{Department.ID2}}" >{{Department.dept_name}} </option>
+                            </select>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                    <br>
 
-  <form name="surveyForm" id = "surveyID" onsubmit="" value="" method ="POST">
-    <fieldset>1. Check the appropriate box to identify your high school completion requirement for degree seeking entering students.
-      </br>
-      </br>
-   
-      <input type = "radio" name="check"> High school diploma is required and GED is accepted
-        </br>
-      <input type = "radio" name="check"> High school diploma is require and GED is not accepted
-        </br>
-      <input type = "radio" name="check"> High school diploma or equivalent is not required
-        </br>
-      <input type="radio" name="check"> No answer
-</fieldset>
-</br>
-</br>
-<fieldset>
-2. Open admission policuy as described for most students. but:
-  </br>
-</br>
+            <div class="row">
+                      <div class="col-md-12">
+                        <form class="form-group">
+                            <div class="col-md-4"><label for="SurveyName"><strong>Survey Name:</strong></label></div>
+                          <div class="col-md-6">
+                            <input name="SurveyName" id="SurveyName" class="form-control  c-square c-theme" type="text" placeholder="Survey name" ng-model="searchKeyword.Survey_name">
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <form class="form-group">
+                            <div class="col-md-4"><label for="SurveyCode"><strong>Survey Code:</strong></label></div>
+                          <div class="col-md-6">
+                            <input name="SurveyCode" id="SurveyCode" class="form-control  c-square c-theme" type="text" placeholder="Survey code" ng-model="searchKeyword.Survey_code">
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                    <br>
 
-  		<input type="checkbox"> Selective admission for out-of-state students
-</br>
-    	<input type="checkbox"> Selective admission to some programs
-</br>
-    	<input type="checkbox"> Selective admission to some programs
-</br>
-		<input type="checkbox"> Selective admission to some programs
-</br>
-    	<input type="checkbox"> Selective admission to some programs
-</br>
-     	<input type="checkbox"> Selective admission to some programs
-</br>
-     	<input type="checkbox"> Selective admission to some programs
-</br></br>
-   		Others <input type="text"> 
 
-</fieldset>
-</br>
-</br>
+                   <div class="cbp loading">
+              <table class="table table-striped c-margin-t-30 c-border">
+                         <h2 ng-if="searchKeyword.Dept_ID2 != ''">{{ searchKeyword.Dept_ID2 | getDepartmentName }}</h2>
+  
 
-<fieldset>
- 3. Nonacademic
-  </br>
-    <table>
-      <tr>
-        <th></th>
-        <th></th>
-        <th>Very Important</th>
-        <th>Important</th>
-        <th>Considered</th>
-        <th>Not Considered</th>
-        <th>No Answer</th>
-      </tr>
-</br      
-      <tr>
-        <th>Interview</th>
-        <th></th>
-        <th><input type="radio" name="check1"></th>
-        <th><input type="radio" name="check1"></th>
-        <th><input type="radio" name="check1"></th>
-        <th><input type="radio" name="check1"></th>
-        <th><input type="radio" name="check1"></th>
-          
-      </tr>
-</br>
-      
-            <tr>
-        <th>Extracurricular Activities</th>
-        <th></th>
-        <th><input type="radio" name="check2"></th>
-        <th><input type="radio" name="check2"></th>
-        <th><input type="radio" name="check2"></th>
-        <th><input type="radio" name="check2"></th>
-        <th><input type="radio" name="check2"></th>
-          
-      </tr>
+<div class="submitbtn"><button type="submit" onclick="validateForm()">Submit</button></div>
+  
 
-      
-            <tr>
-        <th>Talent/abilites</th>
-        <th></th>
-        <th><input type="radio" name="check3"></th>
-        <th><input type="radio" name="check3"></th>
-        <th><input type="radio" name="check3"></th>
-        <th><input type="radio" name="check3"></th>
-        <th><input type="radio" name="check3"></th>
-          
-      </tr>
+ <!-- DISPLAY IF SPECIFIC DEPARTMENT REQUESTED -->
+          <div class="c-margin-t-50 cbp loading" ng-if="Department_ID != '' ">
+            <table class="table table-striped c-margin-t-30 c-border">
 
-      
-            <tr>
-        <th>Character/personal qualities</th>
-        <th></th>
-        <th><input type="radio" name="check4"></th>
-        <th><input type="radio" name="check4"></th>
-        <th><input type="radio" name="check4"></th>
-        <th><input type="radio" name="check4"></th>
-        <th><input type="radio" name="check4"></th>
-          
-      </tr>
-      
-      <tr>
-        <th>First generation</th>
-        <th></th>
-        <th><input type="radio" name="check5"></th>
-        <th><input type="radio" name="check5"></th>
-        <th><input type="radio" name="check5"></th>
-        <th><input type="radio" name="check5"></th>
-        <th><input type="radio" name="check5"></th>
-          
-      </tr>
-</table>
-</fieldset>
-</br>
 
-<div class="butn"><button type="submit">Submit</button></div>
-
-    
   </form>
 
-  <style = "text/css">
-  .formHeader {
-    margin: auto;
-    text-align: center;
-    width: 70%;
-    padding: 20px;
-}
+     <title></title><head>
 
+<script type="text/javascript">
+ 	
+ 	function validateForm() 
+ 	{
+
+ 		
+
+	}
+
+
+
+
+</script>
+</head>       
 
 
 							</div>
