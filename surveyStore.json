@@ -1,0 +1,140 @@
+{"departments": [{
+        "name": "Admissions",
+        "surveys": [{
+            "id": "Admin-Demo-1",
+            "results": [{
+                "ct": 1,
+                "questionBank": [{
+                    "answer": "sample answer",
+                    "question": "sample question"
+                }]
+            }, {
+                "ct": 2,
+                "questionBank": [{
+                    "answer": "sample answer",
+                    "question": "sample question"
+                }]
+            }, {
+                "ct": 3,
+                "questionBank": [{
+                    "answer": "sample answer",
+                    "question": "sample question"
+                }]
+            }]
+        }, {
+            "id": "Admin-Demo-2",
+            "results": [{
+                "ct": 1,
+                "questionBank": [{
+                    "answer": "sample answer",
+                    "question": "sample question"
+                }]
+            }, {
+                "ct": 2,
+                "questionBank": [{
+                    "answer": "sample answer",
+                    "question": "sample question"
+                }]
+            }, {
+                "ct": 3,
+                "questionBank": [{
+                    "answer": "sample answer",
+                    "question": "sample question"
+                }]
+            }]
+        }]
+    }, {
+        "name": "Computer Systems Technology",
+        "surveys": [{
+            "id": "CST-Demo-1",
+            "results": [{
+                "ct": 1,
+                "questionBank": [{
+                    "answer": "sample answer",
+                    "question": "sample question"
+                }]
+            }, {
+                "ct": 2,
+                "questionBank": [{
+                    "answer": "sample answer",
+                    "question": "sample question"
+                }]
+            }, {
+                "ct": 3,
+                "questionBank": [{
+                    "answer": "sample answer",
+                    "question": "sample question"
+                }]
+            }]
+        }, {
+            "id": "CST-Demo-2",
+            "results": [{
+                "ct": 1,
+                "questionBank": [{
+                    "answer": "sample answer",
+                    "question": "sample question"
+                }]
+            }, {
+                "ct": 2,
+                "questionBank": [{
+                    "answer": "sample answer",
+                    "question": "sample question"
+                }]
+            }, {
+                "ct": 3,
+                "questionBank": [{
+                    "answer": "sample answer",
+                    "question": "sample question"
+                }, {
+                    "answer": "another answer",
+                    "question": "another question"
+                }]
+            }]
+        }]
+    }, {
+        "name": "SEEK",
+        "surveys": [{
+            "id": "SEEK-1",
+            "results": [{
+                "ct": 1,
+                "questionBank": [{
+                    "answer": "sample answer",
+                    "question": "sample question"
+                }]
+            }, {
+                "ct": 2,
+                "questionBank": [{
+                    "answer": "sample answer",
+                    "question": "sample question"
+                }]
+            }, {
+                "ct": 3,
+                "questionBank": [{
+                    "answer": "sample answer",
+                    "question": "sample question"
+                }]
+            }]
+        }, {
+            "id": "SEEK-2",
+            "results": [{
+                "ct": 1,
+                "questionBank": [{
+                    "answer": "sample answer",
+                    "question": "sample question"
+                }]
+            }, {
+                "ct": 2,
+                "questionBank": [{
+                    "answer": "sample answer",
+                    "question": "sample question"
+                }]
+            }, {
+                "ct": 3,
+                "questionBank": [{
+                    "answer": "sample answer",
+                    "question": "sample question"
+                }] 
+            }] 
+        }] 
+    }] 
+}
