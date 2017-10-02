@@ -24,7 +24,7 @@
         <div class="survey">
             <form id='startSurvey' 
                     name='startSurvey' 
-                    method="GET" 
+                    method="POST" 
                     class="form-horizontal" 
                     action="searchSurvey">
                 <div class="form-group">
@@ -33,6 +33,7 @@
                     </label>
                     <input  name="departments"
                             type="text"
+                            id="asdda"
                             list="departments"
                             placeholder="Enter In Department"
                             class="form-control stored"
@@ -40,7 +41,7 @@
                     <input type="hidden" name="deptartmentId" id="departmentId"/>
                     <datalist id="departments">
                           <!--<%console.log(allDept.departments);%>-->
-                          <%allDept.forEach( department => {%> <option data-value="<%=department.id%>" value="<%=department.name%>"></option> <%})%>;
+                          <%allDept.departments.forEach( department => {%> <option data-value="<%=department.id%>" value="<%=department.name%>"></option> <%})%>;
                     </datalist>
                 </div>
 <!--

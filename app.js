@@ -46,21 +46,48 @@ app.use(bodyParser.urlencoded({
 app.get('/', function(req, res){
     return res.render('forms/login',{
         title: 'Select Departments',
-        allDept: deptList.departments
+        allDept: deptList
     });
 });
 
-app.get('/searchSurvey', function(req, res){
-    console.log(req.params);
-    return res.render('forms/main', {
+var deptInt = '';
 
+app.post('/searchSurvey', function(req, res){
+    var dept = req.body.departments;
+    
+    console.log(dept);
+    switch(dept){
+        case 'Computer Information Systems':
+            deptInt = 1;
+        break;
+        case 'Admissions':
+            deptInt = 2;
+        break;
+        case 'Physics':
+            deptInt = 3;
+        break;
+    }
+
+    console.log(deptInt);
+    return res.render('forms/main', {
+        deptId : deptInt
     })
 });
 
 app.post('/storeSurvey',function(req, res){
     // req data gets passed here
-    console.log(req.body);
-    dataLink.storeResponse(deptCode, surveyCode, response);
+
+    var response = req.body
+    // var questions = Object.keys(req.body));
+    for (var key in req.body){
+        console.log(key);
+        console.log(req.body);
+        // console.log(req.boy[key]);
+    }
+    var deptCode = deptInt,
+        surveyCode = 0,
+        response;
+    res.send(req.body);
 });
 
 app.listen(app.get('port'), function(){

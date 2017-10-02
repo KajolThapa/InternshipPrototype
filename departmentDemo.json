@@ -1,13 +1,13 @@
 {
     "departments": [
         {
-            "id" : "1",
+            "id" : 1,
             "name" : "Computer Information Systems"
         }, {
-            "id" : "2",
+            "id" : 2,
             "name": "Admissions"       
         }, {
-            "id" : "3",
+            "id" : 3,
             "name": "Physics"
         }
     ]
