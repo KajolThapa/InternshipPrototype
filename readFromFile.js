@@ -24,3 +24,10 @@ exports.viewAllResponse = function(){
         }
     }
 }
+
+
+var sample = require('./departmentDemo.json');
+
+console.log(sample.departments.forEach(function(el){
+    console.log(el);
+}));

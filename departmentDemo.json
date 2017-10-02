@@ -1,0 +1,14 @@
+{
+    "departments": [
+        {
+            "id" : "1",
+            "name" : "Computer Information Systems"
+        }, {
+            "id" : "2",
+            "name": "Admissions"       
+        }, {
+            "id" : "3",
+            "name": "Physics"
+        }
+    ]
+}

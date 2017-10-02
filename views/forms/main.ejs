@@ -1,0 +1,117 @@
+<% layout('layout') -%>
+    <h1>Data Collection</h1>
+    <h2>Best Colleges - Main Survey</h2>
+    <h2>CUNY - New York City College of Technology</h2>
+    <h1>Admission Requirements</h1>
+    <form>
+        <fieldset>1. Check the appropriate box to identify your high school completion requirement for degree seeking entering students.
+            </br>
+            </br>
+
+            <input type="radio" name="check1" value="High school diploma is required and GED is accepted"> High school diploma
+            is required and GED is accepted
+            </br>
+            <input type="radio" name="check1" value="High school diploma is require and GED is not accepted"> High school
+            diploma is require and GED is not accepted
+            </br>
+            <input type="radio" name="check1" value="High school diploma or equivalent is not required"> High school diploma
+            or equivalent is not required
+            </br>
+            <input type="radio" name="check1" value="No answer"> No answer
+        </fieldset>
+        </br>
+        </br>
+        <fieldset>2. Open admission policy as described for most students. but:
+            </br>
+            </br>
+            <input type="checkbox" name="check2" value="Selective admission for out-of-state students"> Selective admission
+            for out-of-state students
+            </br>
+            <input type="checkbox" name="check2" value="Selective admission to some programs
+"> Selective admission to some programs
+        </fieldset>
+        </br>
+        </br>
+        <fieldset> 3. Nonacademic
+            </br>
+            <table>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th>Very Important</th>
+                    <th>Important</th>
+                    <th>Considered</th>
+                    <th>Not Considered</th>
+                    <th>No Answer</th>
+                </tr>
+                </br <tr>
+                <th>Interview</th>
+                <th></th>
+                <th><input type="radio" name="check3" value="Very Important"></th>
+                <th><input type="radio" name="check3" value="Important"></th>
+                <th><input type="radio" name="check3" value="Considered"></th>
+                <th><input type="radio" name="check3" value="Not Considered"></th>
+                <th><input type="radio" name="check3" value="No Answer"></th>
+
+                </tr>
+                </br>
+
+                <tr>
+                    <th>Extracurricular Activities</th>
+                    <th></th>
+                    <th><input type="radio" name="check4" value="Very Important"></th>
+                    <th><input type="radio" name="check4" value="Important"></th>
+                    <th><input type="radio" name="check4" value="Considered"></th>
+                    <th><input type="radio" name="check4" value="Not Considered"></th>
+                    <th><input type="radio" name="check4" value="No Answer"></th>
+
+                </tr>
+
+                <tr>
+                    <th>Talent/abilites</th>
+                    <th></th>
+                    <th><input type="radio" name="check5" value="Very Important"></th>
+                    <th><input type="radio" name="check5" value="Important"></th>
+                    <th><input type="radio" name="check5" value="Considered"></th>
+                    <th><input type="radio" name="check5" value="Not Considered"></th>
+                    <th><input type="radio" name="check5" value="No Answer"></th>
+
+                </tr>
+
+                <tr>
+                    <th>Character/personal qualities</th>
+                    <th></th>
+                    <th><input type="radio" name="check6" value="Very Important"></th>
+                    <th><input type="radio" name="check6" value="Important"></th>
+                    <th><input type="radio" name="check6" value="Considered"></th>
+                    <th><input type="radio" name="check6" value="Not Considered"></th>
+                    <th><input type="radio" name="check6" value="No Answer"></th>
+
+                </tr>
+
+                <tr>
+                    <th>First generation</th>
+                    <th></th>
+                    <th><input type="radio" name="check7" value="Very Important"></th>
+                    <th><input type="radio" name="check7" value="Important"></th>
+                    <th><input type="radio" name="check7" value="Considered"></th>
+                    <th><input type="radio" name="check7" value="Not Considered"></th>
+                    <th><input type="radio" name="check7" value="No Answer"></th>
+
+                </tr>
+            </table>
+        </fieldset>
+        </br>
+
+        <p><tt id="results"></tt></p>
+
+        <script>
+            function showValues() {
+                var str = $("form").serialize();
+                $("#results").text(str);
+                console.log(str);
+            }
+            $("input[type='checkbox'], input[type='radio']").on("click", showValues);
+            //$( "select" ).on( "change", showValues );
+            showValues();
+        </script>

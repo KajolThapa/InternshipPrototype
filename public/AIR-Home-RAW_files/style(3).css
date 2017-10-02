@@ -1,0 +1,17 @@
+.jtweets-feed ul { position:relative; }
+.jtweets-feed ul li { position:absolute; left:0; top:0; list-style: none; }
+.jtweets-feed ul li span { font-size: 10px; }
+
+.jtweets-feed.no-fade { position: relative; }
+.jtweets-feed.no-fade li { position: relative; list-style: none; }
+.jtweets-feed.no-fade li span { font-size: 10px; }
+
+/* avatar and username */
+.jtweets-feed div.jtweets-avatar-block { border-bottom: 1px solid #555; overflow: hidden; margin: 0 0 10px 0; }
+.jtweets-feed div.jweets-avatar-block-1 { float: left; }
+.jtweets-feed div.jtweets-avatar-block-1 img { width: 48px; height: 48px; border: 1px solid #ddd; padding: 6px; margin: 0 10px 10px 0; float: left; }
+.jtweets-feed div.jweets-avatar-block-2 { float: left; }
+
+/* starting to theme */
+.jtweets-feed.theme-twentytwelve-light ul li { padding: 5px 0 5px 0; border-bottom: 1px solid #555; }
+.jtweets-feed.theme-twentytwelve-dark ul li { padding: 5px 0 5px 0; border-bottom: 1px solid #aaa; }
