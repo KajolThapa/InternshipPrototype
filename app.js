@@ -50,13 +50,16 @@ app.get('/', function(req, res){
     });
 });
 
-app.post('/searchSurvey', function(req, res){
-    console.log(req.body);
-    res.send('echo');
+app.get('/searchSurvey', function(req, res){
+    console.log(req.params);
+    return res.render('forms/main', {
+
+    })
 });
 
 app.post('/storeSurvey',function(req, res){
     // req data gets passed here
+    console.log(req.body);
     dataLink.storeResponse(deptCode, surveyCode, response);
 });
 
