@@ -8,6 +8,7 @@ var express = require('express'),
 
 var dataLink = require('./writeToFile');
 var deptList = require('./departmentDemo.json');
+var showData = require('./readFromFile');
 console.log(deptList.departments);
 // Define a port for node to run in. Take either a custom port when deployed, or default to 3000
 app.set('port', process.env.PORT || 3000);
@@ -87,8 +88,13 @@ app.post('/storeSurvey',function(req, res){
     var deptCode = deptInt,
         surveyCode = 0,
         response;
+
     res.send(req.body);
 });
+
+app.get('/showdata', function(req, res){
+    console.log(showData.viewAllResponse());
+})
 
 app.listen(app.get('port'), function(){
   console.log('\nExpress listening on port %d in %s mode \n\n\n',
