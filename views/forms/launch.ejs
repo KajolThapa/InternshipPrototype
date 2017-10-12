@@ -1,0 +1,181 @@
+<% layout('layout') -%>
+  
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#departments').blur(function(){
+                var input = $(this).val().trim();
+                var selectedOption = document.querySelector("#dept-list option[value='"+input+"']");
+                if(selectedOption){
+                    $('#deptID').val(selectedOption.dataset.value);
+                } else {
+                    console.log("invalid selection");
+                }
+            });
+
+            $('#submitDeptID').click(function(){
+                console.log('asdas');
+                var email = $('#email').val();
+                var deptName = $('#departments').val();
+                var deptID = $('#deptID').val();
+                
+                $.ajax({
+                    type: 'POST',
+                    url: '/getsurvey',
+                    data: {
+                        email : email,
+                        deptName : deptName,
+                        deptID :deptID
+                    },
+                    success : function(res){
+                        console.log("do some stuff");
+                        console.log(res);
+                    }
+                })
+            })
+
+            $('#submitDeptID').click(function(){
+                $('.survey-response-container').toggle("fast");
+            })
+        })
+    </script>
+
+    <div class="survey-container">
+        <div class="signup-header">
+            <h3 class="heading">Welcome to AIR Surveys</h3>
+            <h5 class="heading">To start a survey, please enter in your email and select the department you belong to</h5>
+        </div>
+        <div class="row">
+            <div class="survey">
+                <form id='getSurvey' name='getSurvey' class="form-horizontal" >
+
+                    <div class="form-group">
+                        <label for="email" class="input-label">Enter in City Tech Email</label>
+                        <input name="email" type="text" id="email" placeholder="@.citytech.cuny.edu" required class="form-control stored" />
+                    </div>
+                    <div class="form-group">
+                        <label for="departments" class="input-label">Enter in Department Name to Get List of Surveys</label>
+                        <input name="departments" type="text" id="departments" list="dept-list" placeholder="Enter In Department" class="form-control stored"/>
+                        <datalist id="dept-list">
+                            <%list.departments.forEach( department => {%><option data-value="<%=department.id%>" value="<%=department.name%>"></option><%})%>;
+                        </datalist>
+                        <!-- Empty input which stores the dept id-->
+                        <input type="hidden" name="deptID" id="deptID" />
+                    </div>
+                
+                    <div class="form-group">
+                        <button id="submitDeptID" onclick="return false" class="btn btn-success">Start Survey
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- Survey Response Listing -->
+        <div hidden class="row survey-response-container">
+            <div class="survey-response">
+                <label>Available Surveys</label>
+                <nav>
+                    <ul class="list-group">
+                        <!--<li class="list-group-item">
+                            <div class="card">
+                                <div class="card-block">
+                                    <div class="row">
+                                        <div class="col-sm-9">
+                                            <h2 class="card-title">Survey Name</h5>
+                                            <h4 class="card-subtitle mb-3 text-muted">Survey ID</h6>
+                                            <p class="card-text">Survey Description</p>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <p class="card-text">asdas</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>-->
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-1"></div>
+                                <div class="col-sm-8">
+                                    <h3 class="list-group-item-heading">Sample Survey</h4>
+                                    <p class="list-group-item-text">Survey Description</p>
+                                </div>
+                                <div class="col-sm-3">
+                                    <p class="list-group-item-text"> Available until : DATE</p>
+                                    <p class="list-group-item-text">Survey ID</p>
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-1"></div>
+                                <div class="col-sm-8">
+                                    <h3 class="list-group-item-heading">Sample Survey</h4>
+                                    <p class="list-group-item-text">Survey Description</p>
+                                </div>
+                                <div class="col-sm-3">
+                                    <p class="list-group-item-text"> Available until : DATE</p>
+                                    <p class="list-group-item-text">Survey ID</p>
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-1"></div>
+                                <div class="col-sm-8">
+                                    <h3 class="list-group-item-heading">Sample Survey</h4>
+                                    <p class="list-group-item-text">Survey Description</p>
+                                </div>
+                                <div class="col-sm-3">
+                                    <p class="list-group-item-text"> Available until : DATE</p>
+                                    <p class="list-group-item-text">Survey ID</p>
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-1"></div>
+                                <div class="col-sm-8">
+                                    <h3 class="list-group-item-heading">Sample Survey</h4>
+                                    <p class="list-group-item-text">Survey Description</p>
+                                </div>
+                                <div class="col-sm-3">
+                                    <p class="list-group-item-text"> Available until : DATE</p>
+                                    <p class="list-group-item-text">Survey ID</p>
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-1"></div>
+                                <div class="col-sm-8">
+                                    <h3 class="list-group-item-heading">Sample Survey</h4>
+                                    <p class="list-group-item-text">Survey Description</p>
+                                </div>
+                                <div class="col-sm-3">
+                                    <p class="list-group-item-text"> Available until : DATE</p>
+                                    <p class="list-group-item-text">Survey ID</p>
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-1"></div>
+                                <div class="col-sm-8">
+                                    <h3 class="list-group-item-heading">Sample Survey</h4>
+                                    <p class="list-group-item-text">Survey Description</p>
+                                </div>
+                                <div class="col-sm-3">
+                                    <p class="list-group-item-text"> Available until : DATE</p>
+                                    <p class="list-group-item-text">Survey ID</p>
+                                </div>
+                            </div>
+                        </li>
+                        
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>

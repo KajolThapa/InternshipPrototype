@@ -6,10 +6,8 @@ var express = require('express'),
     connectAssets = require('connect-assets'),
     logger = require('morgan');
 
-var dataLink = require('./writeToFile');
-var deptList = require('./departmentDemo.json');
-var showData = require('./readFromFile');
-console.log(deptList.departments);
+var routes = require('./routes/routes');
+
 // Define a port for node to run in. Take either a custom port when deployed, or default to 3000
 app.set('port', process.env.PORT || 3000);
 // Define the template engine
@@ -22,13 +20,14 @@ app.set('view engine', 'ejs'); // this line allows you to render ejs
 // https://www.npmjs.com/package/connect-assets
 // The assets in this case will be ~/public/* since they're needed client side
 app.use(connectAssets({
-  paths: [
-    path.join(__dirname, 'public/css'),
-    path.join(__dirname, 'public/dev'),
-    path.join(__dirname, 'public/fonts'),
-    path.join(__dirname, 'public/images'),
-    path.join(__dirname, 'public/js')
-  ]
+    paths: [
+        path.join(__dirname, 'public/css'),
+        path.join(__dirname, 'public/dev'),
+        path.join(__dirname, 'public/fonts'),
+        path.join(__dirname, 'public/images'),
+        path.join(__dirname, 'public/support'),
+        path.join(__dirname, 'public/js')
+    ]
 }));
 
 // Similar as connect assets, but requires the raw path to be put for src and href
@@ -39,66 +38,13 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 // https://github.com/expressjs/body-parser
 app.use(bodyParser.json()); // parses only json objects
 app.use(bodyParser.urlencoded({
-  extended:true // allow foor rich json objects and arrays
+    extended: true // allow foor rich json objects and arrays
 }));
 
 // Routes
+app.use('/', routes);
 
-app.get('/', function(req, res){
-    return res.render('forms/login',{
-        title: 'Select Departments',
-        allDept: deptList
-    });
+app.listen(app.get('port'), function () {
+    console.log('\nExpress listening on port %d in %s mode \n\n\n',
+        app.get('port'), app.get('env'));
 });
-
-var deptInt = '';
-
-app.post('/searchSurvey', function(req, res){
-    var dept = req.body.departments;
-    
-    console.log(dept);
-    switch(dept){
-        case 'Computer Information Systems':
-            deptInt = 1;
-        break;
-        case 'Admissions':
-            deptInt = 2;
-        break;
-        case 'Physics':
-            deptInt = 3;
-        break;
-    }
-
-    console.log(deptInt);
-    return res.render('forms/main', {
-        deptId : deptInt
-    })
-});
-
-app.post('/storeSurvey',function(req, res){
-    // req data gets passed here
-
-    var response = req.body
-    // var questions = Object.keys(req.body));
-    for (var key in req.body){
-        console.log(key);
-        console.log(req.body);
-        // console.log(req.boy[key]);
-    }
-    var deptCode = deptInt,
-        surveyCode = 0,
-        response;
-
-    res.send(req.body);
-});
-
-app.get('/showdata', function(req, res){
-    console.log(showData.viewAllResponse());
-})
-
-app.listen(app.get('port'), function(){
-  console.log('\nExpress listening on port %d in %s mode \n\n\n',
-  app.get('port'), app.get('env'));
-});
-
-
