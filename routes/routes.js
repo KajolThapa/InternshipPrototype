@@ -16,7 +16,7 @@ router.post('/getsurvey', function(req, res){
     var deptID = req.body.deptID,
         email = req.body.email,
         deptName = req.body.deptName;
-
+        console.log(req.body);
     if(deptID == 0){
         res.json([{
             "id":"id-821",

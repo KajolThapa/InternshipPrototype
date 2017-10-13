@@ -49,7 +49,7 @@
                                     '<li class="list-group-item">'+
                                     '<div class="row">'+
                                         '<div class="col-sm-1"></div>'+
-                                        '<div class="col-sm-8">'+
+                                        '<div class="col-sm-6">'+
                                             '<h3 class="list-group-item-heading">'+ item.survey + '</h4>'+
                                             '<p class="list-group-item-text">'+ item.desc +'</p>'+
                                         '</div>'+
@@ -57,6 +57,10 @@
                                             '<p class="list-group-item-text"> Available until : '+ item.date + ' </p>'+
                                             '<p class="list-group-item-text">'+ item.id + '</p>'+
                                         '</div>'+
+                                        '<div class="col-sm-1">'+
+                                            '<button type="button" name="startSurvey" value="'+ item.id +'" class="btn" >Start Survey</button>'+
+                                        '</div>'+
+                                        '<div class="col-sm-1"></div>'+
                                     '</div>'+
                                 '</li>'
                                 )
@@ -71,6 +75,12 @@
                 $('#surveyResponseList').empty();
                 $('.survey-response-container').show("fast");
             })
+
+            // $('.start-survey').click(function(){
+            //     console.log('boop');
+            //     var test = $(this).val();
+            //     console.log(test);
+            // })
         })
     </script>
 
@@ -125,10 +135,10 @@
                                 </div>
                             </div>
                         </li>-->
-                        <!--<li class="list-group-item">
+                        <li class="list-group-item">
                             <div class="row">
                                 <div class="col-sm-1"></div>
-                                <div class="col-sm-8">
+                                <div class="col-sm-7">
                                     <h3 class="list-group-item-heading">Sample Survey</h4>
                                     <p class="list-group-item-text">Survey Description</p>
                                 </div>
@@ -136,9 +146,12 @@
                                     <p class="list-group-item-text"> Available until : DATE</p>
                                     <p class="list-group-item-text">Survey ID</p>
                                 </div>
+                                <div class="col-sm-1">
+                                    <button id="startSurvey" type="button" name="startSurvey" value="someVal" class="btn start-survey" >Start Survey</button>
+                                </div>
                             </div>
                         </li>
-                        
+                        <!--
                         <li class="list-group-item">
                             <div class="row">
                                 <div class="col-sm-1"></div>
