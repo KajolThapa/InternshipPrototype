@@ -12,6 +12,10 @@
                 }
             });
 
+            $('#departments').focus(function(){
+                $('#departments').val('');
+            });
+
             $('#submitDeptID').click(function(){
                 console.log('asdas');
                 var email = $('#email').val();
@@ -27,14 +31,45 @@
                         deptID :deptID
                     },
                     success : function(res){
-                        console.log("do some stuff");
                         console.log(res);
+                        $(function(){
+                            $.each(res, function(i, item){
+                                console.log("ITEM:: "+item);
+
+                                // $('#surveyResponseList').append(
+                                //     '<li class="list-group-item"><div class="row"><div class="col-sm-1"></div><div class="col-sm-8">',
+                                //     $('<h3>').addClass("list-group-item-heading").text('Sample Survey'),
+                                //     $('<p>').addClass("list-group-item-text").text("Survey Description"),
+                                //     '</div><div class="col-sm-3">',
+                                //     $('<p>').addClass("list-group-item-text").text("Available until : DATE"),
+                                //     $('<p>').addClass("list-group-item-text").text("Survey ID"),
+                                //     '</div></div></li>'
+                                // )
+                                $('#surveyResponseList').append(
+                                    '<li class="list-group-item">'+
+                                    '<div class="row">'+
+                                        '<div class="col-sm-1"></div>'+
+                                        '<div class="col-sm-8">'+
+                                            '<h3 class="list-group-item-heading">'+ item.survey + '</h4>'+
+                                            '<p class="list-group-item-text">'+ item.desc +'</p>'+
+                                        '</div>'+
+                                        '<div class="col-sm-3">'+
+                                            '<p class="list-group-item-text"> Available until : '+ item.date + ' </p>'+
+                                            '<p class="list-group-item-text">'+ item.id + '</p>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</li>'
+                                )
+                            })
+                        })
                     }
                 })
             })
 
             $('#submitDeptID').click(function(){
-                $('.survey-response-container').toggle("fast");
+                $('.survey-response-container').hide();
+                $('#surveyResponseList').empty();
+                $('.survey-response-container').show("fast");
             })
         })
     </script>
@@ -73,7 +108,7 @@
             <div class="survey-response">
                 <label>Available Surveys</label>
                 <nav>
-                    <ul class="list-group">
+                    <ul class="list-group" id="surveyResponseList">
                         <!--<li class="list-group-item">
                             <div class="card">
                                 <div class="card-block">
@@ -90,7 +125,7 @@
                                 </div>
                             </div>
                         </li>-->
-                        <li class="list-group-item">
+                        <!--<li class="list-group-item">
                             <div class="row">
                                 <div class="col-sm-1"></div>
                                 <div class="col-sm-8">
@@ -172,7 +207,7 @@
                                     <p class="list-group-item-text">Survey ID</p>
                                 </div>
                             </div>
-                        </li>
+                        </li>-->
                         
                     </ul>
                 </nav>
