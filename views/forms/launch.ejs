@@ -24,7 +24,7 @@
                 
                 $.ajax({
                     type: 'POST',
-                    url: '/getsurvey',
+                    url: '/getsurveylist',
                     data: {
                         email : email,
                         deptName : deptName,
@@ -58,7 +58,7 @@
                                             '<p class="list-group-item-text">'+ item.id + '</p>'+
                                         '</div>'+
                                         '<div class="col-sm-1">'+
-                                            '<button type="button" name="startSurvey" value="'+ item.id +'" class="btn" >Start Survey</button>'+
+                                            '<button type="button" name="startSurvey" value="'+ item.id +'" class="btn startSurvey" >Start Survey</button>'+
                                         '</div>'+
                                         '<div class="col-sm-1"></div>'+
                                     '</div>'+
@@ -76,11 +76,28 @@
                 $('.survey-response-container').show("fast");
             })
 
-            // $('.start-survey').click(function(){
-            //     console.log('boop');
+            // https://api.jquery.com/on/  -- Look at Delegated events.
+            // Using .on() allows us to process events at a later time after all elements of the page load. 
+            // $(document).on('click', '.startSurvey',function(){
             //     var test = $(this).val();
             //     console.log(test);
             // })
+
+            $(document).on('click', '.startSurvey',function(){
+                var surveyId = $(this).val(),
+                    deptId = $('#deptID').val(),
+                    email = $('#email').val();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/survey',
+                    data : {
+                        email : email,
+                        deptId : deptId,
+                        surveyId : surveyId 
+                    }
+                });
+            })
         })
     </script>
 

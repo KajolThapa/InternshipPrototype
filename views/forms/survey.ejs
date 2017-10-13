@@ -1,0 +1,7 @@
+<% layout('layout') -%>
+<p>SOME DAATA</p>
+<% surveyData.questionKey.forEach(surveyQuestion => {%>
+    <p value="<%=surveyQuestion.id%>"></p>
+    <p value="<%surveyQuestion.question%>"></p>
+    <%
+})%>
