@@ -12,6 +12,10 @@ router.get('/', function(req, res){
     });
 });
 
+
+router.get('/test', function(req, res){
+    res.render('forms/survey');
+})
 router.post('/getsurveylist', function(req, res){
     var deptID = req.body.deptID,
         email = req.body.email,
@@ -108,12 +112,12 @@ router.post('/getsurveylist', function(req, res){
 })
 
 router.post('/survey', function(req, res){
+// router.get('/survey/:email/:deptid/:surveyId', function(req, res){
     console.log(req.body);
-    // Take survey code, pass to query. Render ejs along with query response
-    return res.render('forms/survey', {
-        title: "saml",
-        surveyData :{
-            surveyId: "sample-survey",
+    console.log('build survey');
+    res.render('forms/survey'
+    , {
+        surveyData: {
             surveyName: "sample-name",
             questionKey: [
                 {
@@ -127,34 +131,63 @@ router.post('/survey', function(req, res){
                     ]
                 }, {
                     id: 1,
-                    question: "What does cow say?",
-                    questionType: 2, // Allow multiple inputs (checkbox)
+                    question: "Floof?",
+                    questionType: 2, // single input, multiple choice (checkbox)
                     answerKey: [
-                        { ans: "MOO!" },
-                        { ans: "BAAHH!!" },
-                        { ans : "BUUHHH" },
-                        { ans : "ARF!"}
-                    ]   
-                }, {
-                    id: 2,
-                    question: "On a scale of 1-5, How much do you like pizza?",
-                    questionType: 3, // single input, rating scale (radio)
-                    answerKey: [
-                        { ans: "1" },
-                        { ans: "2" },
-                        { ans: "3" },
-                        { ans: "4" },
-                        { ans: "6" }
+                        { ans: "woof" },
+                        { ans: "Moo?" },
+                        { ans : "Chup" }
                     ]
-                }, {
-                    id: 3,
-                    question: "What is your favorite type of floof?",
-                    questionType: 0, // user string entry
-                    answerKey: []
                 }
             ]
         }
-    })
+    });
+    // Take survey code, pass to query. Render ejs along with query response
+    // return res.render('forms/survey', {
+    //     title: "saml",
+    //     surveyData :{
+    //         surveyId: "sample-survey",
+    //         surveyName: "sample-name",
+    //         questionKey: [
+    //             {
+    //                 id: 0,
+    //                 question: "What is soap?",
+    //                 questionType: 1, // single input, multiple choice (checkbox)
+    //                 answerKey: [
+    //                     { ans: "soapy" },
+    //                     { ans: "super soap" },
+    //                     { ans : "sub-soap" }
+    //                 ]
+    //             }, {
+    //                 id: 1,
+    //                 question: "What does cow say?",
+    //                 questionType: 2, // Allow multiple inputs (checkbox)
+    //                 answerKey: [
+    //                     { ans: "MOO!" },
+    //                     { ans: "BAAHH!!" },
+    //                     { ans : "BUUHHH" },
+    //                     { ans : "ARF!"}
+    //                 ]   
+    //             }, {
+    //                 id: 2,
+    //                 question: "On a scale of 1-5, How much do you like pizza?",
+    //                 questionType: 3, // single input, rating scale (radio)
+    //                 answerKey: [
+    //                     { ans: "1" },
+    //                     { ans: "2" },
+    //                     { ans: "3" },
+    //                     { ans: "4" },
+    //                     { ans: "6" }
+    //                 ]
+    //             }, {
+    //                 id: 3,
+    //                 question: "What is your favorite type of floof?",
+    //                 questionType: 0, // user string entry
+    //                 answerKey: []
+    //             }
+    //         ]
+    //     }
+    // })
 });
 
 module.exports = router;

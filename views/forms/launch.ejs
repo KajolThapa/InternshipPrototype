@@ -35,16 +35,7 @@
                         $(function(){
                             $.each(res, function(i, item){
                                 console.log("ITEM:: "+item);
-
-                                // $('#surveyResponseList').append(
-                                //     '<li class="list-group-item"><div class="row"><div class="col-sm-1"></div><div class="col-sm-8">',
-                                //     $('<h3>').addClass("list-group-item-heading").text('Sample Survey'),
-                                //     $('<p>').addClass("list-group-item-text").text("Survey Description"),
-                                //     '</div><div class="col-sm-3">',
-                                //     $('<p>').addClass("list-group-item-text").text("Available until : DATE"),
-                                //     $('<p>').addClass("list-group-item-text").text("Survey ID"),
-                                //     '</div></div></li>'
-                                // )
+                                
                                 $('#surveyResponseList').append(
                                     '<li class="list-group-item">'+
                                     '<div class="row">'+
@@ -58,7 +49,7 @@
                                             '<p class="list-group-item-text">'+ item.id + '</p>'+
                                         '</div>'+
                                         '<div class="col-sm-1">'+
-                                            '<button type="button" name="startSurvey" value="'+ item.id +'" class="btn startSurvey" >Start Survey</button>'+
+                                            '<button type="submit" name="startSurvey" value="'+ item.id +'" class="btn startSurvey" >Start Survey</button>'+
                                         '</div>'+
                                         '<div class="col-sm-1"></div>'+
                                     '</div>'+
@@ -83,21 +74,28 @@
             //     console.log(test);
             // })
 
-            $(document).on('click', '.startSurvey',function(){
-                var surveyId = $(this).val(),
-                    deptId = $('#deptID').val(),
-                    email = $('#email').val();
+            // NOTE-- DO NOT USE AJAX TO PERFORM REDIRECTS
+            // $(document).on('click', '.startSurvey',function(){
+            //     var surveyId = $(this).val(),
+            //         deptId = $('#deptID').val(),
+            //         email = $('#email').val();
 
-                $.ajax({
-                    type: 'POST',
-                    url: '/survey',
-                    data : {
-                        email : email,
-                        deptId : deptId,
-                        surveyId : surveyId 
-                    }
-                });
-            })
+
+            //     // $.get('/survey/' + email + '/' + deptId + '/' + surveyId);
+            //     $.ajax({
+            //         type: 'POST',
+            //         url: '/survey',
+            //         data : {
+            //             email : email,
+            //             deptId : deptId,
+            //             surveyId : surveyId 
+            //         },
+            //         success: function(res){
+            //             // document.write
+            //             // window.location.href = res.data;
+            //         }
+            //     });
+            // })
         })
     </script>
 
@@ -135,111 +133,11 @@
             <div class="survey-response">
                 <label>Available Surveys</label>
                 <nav>
-                    <ul class="list-group" id="surveyResponseList">
-                        <!--<li class="list-group-item">
-                            <div class="card">
-                                <div class="card-block">
-                                    <div class="row">
-                                        <div class="col-sm-9">
-                                            <h2 class="card-title">Survey Name</h5>
-                                            <h4 class="card-subtitle mb-3 text-muted">Survey ID</h6>
-                                            <p class="card-text">Survey Description</p>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <p class="card-text">asdas</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>-->
-                        <li class="list-group-item">
-                            <div class="row">
-                                <div class="col-sm-1"></div>
-                                <div class="col-sm-7">
-                                    <h3 class="list-group-item-heading">Sample Survey</h4>
-                                    <p class="list-group-item-text">Survey Description</p>
-                                </div>
-                                <div class="col-sm-3">
-                                    <p class="list-group-item-text"> Available until : DATE</p>
-                                    <p class="list-group-item-text">Survey ID</p>
-                                </div>
-                                <div class="col-sm-1">
-                                    <button id="startSurvey" type="button" name="startSurvey" value="someVal" class="btn start-survey" >Start Survey</button>
-                                </div>
-                            </div>
-                        </li>
-                        <!--
-                        <li class="list-group-item">
-                            <div class="row">
-                                <div class="col-sm-1"></div>
-                                <div class="col-sm-8">
-                                    <h3 class="list-group-item-heading">Sample Survey</h4>
-                                    <p class="list-group-item-text">Survey Description</p>
-                                </div>
-                                <div class="col-sm-3">
-                                    <p class="list-group-item-text"> Available until : DATE</p>
-                                    <p class="list-group-item-text">Survey ID</p>
-                                </div>
-                            </div>
-                        </li>
-                        
-                        <li class="list-group-item">
-                            <div class="row">
-                                <div class="col-sm-1"></div>
-                                <div class="col-sm-8">
-                                    <h3 class="list-group-item-heading">Sample Survey</h4>
-                                    <p class="list-group-item-text">Survey Description</p>
-                                </div>
-                                <div class="col-sm-3">
-                                    <p class="list-group-item-text"> Available until : DATE</p>
-                                    <p class="list-group-item-text">Survey ID</p>
-                                </div>
-                            </div>
-                        </li>
-                        
-                        <li class="list-group-item">
-                            <div class="row">
-                                <div class="col-sm-1"></div>
-                                <div class="col-sm-8">
-                                    <h3 class="list-group-item-heading">Sample Survey</h4>
-                                    <p class="list-group-item-text">Survey Description</p>
-                                </div>
-                                <div class="col-sm-3">
-                                    <p class="list-group-item-text"> Available until : DATE</p>
-                                    <p class="list-group-item-text">Survey ID</p>
-                                </div>
-                            </div>
-                        </li>
-                        
-                        <li class="list-group-item">
-                            <div class="row">
-                                <div class="col-sm-1"></div>
-                                <div class="col-sm-8">
-                                    <h3 class="list-group-item-heading">Sample Survey</h4>
-                                    <p class="list-group-item-text">Survey Description</p>
-                                </div>
-                                <div class="col-sm-3">
-                                    <p class="list-group-item-text"> Available until : DATE</p>
-                                    <p class="list-group-item-text">Survey ID</p>
-                                </div>
-                            </div>
-                        </li>
-                        
-                        <li class="list-group-item">
-                            <div class="row">
-                                <div class="col-sm-1"></div>
-                                <div class="col-sm-8">
-                                    <h3 class="list-group-item-heading">Sample Survey</h4>
-                                    <p class="list-group-item-text">Survey Description</p>
-                                </div>
-                                <div class="col-sm-3">
-                                    <p class="list-group-item-text"> Available until : DATE</p>
-                                    <p class="list-group-item-text">Survey ID</p>
-                                </div>
-                            </div>
-                        </li>-->
-                        
-                    </ul>
+                    <form action="/survey" method="post">
+                        <ul class="list-group" id="surveyResponseList">
+                            <!-- Survey Listing Response Rendered Here-->
+                        </ul>
+                    </form>
                 </nav>
             </div>
         </div>
