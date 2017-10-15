@@ -15,7 +15,14 @@
                 <% } else { %>
                     <p>OTHER STUFF</p>
                 <% } %>
-
+                
+                <%data.answerKey.forEach(
+                    answerSet => {
+                        %>
+                            <h5><%=answerSet.ans%></h5>
+                        <%
+                    }
+                )%>
             <%
             
             }
