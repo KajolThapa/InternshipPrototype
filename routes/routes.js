@@ -191,4 +191,8 @@ router.post('/survey', function(req, res){
     // })
 });
 
+router.post('/submit', function(req, res){
+    console.log(req.body);
+    res.send('SUBMIT!');
+})
 module.exports = router;
