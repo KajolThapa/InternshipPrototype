@@ -1,71 +1,126 @@
 <% layout('layout') -%>
+<div class="survey-render-container">
+    <div class="row">
+        <div class="survey">
 
-    <p><%=surveyData.surveyName%></p>
-
-    <%surveyData.questionKey.forEach(
-        data => {
-            %>
-                <h3><%=data.id%></h3>
-                <h4><%=data.question%></h4>
-
-                <% if (data.questionType === 1) { %>
-                    <p> QUESTION TYPE 1</p>
-                <% } else if (data.questionType === 2) { %>
-                    <p>QUESTION TYPE 2</p>
-                <% } else { %>
-                    <p>OTHER STUFF</p>
-                <% } %>
+            <h4><%=surveyData.surveyName%></h4>
+            <form name="surveyName" method="POST" class="form-horizontal" action="/submit">
+                <input type="hidden" name="email" value="<%=email%>"/>
+                <input type="hidden" name="deptId" value="<%=deptId%>"/>
                 
-                <%data.answerKey.forEach(
-                    answerSet => {
+                <%surveyData.questionKey.forEach(
+                    (data, index) => {
                         %>
-                            <h5><%=answerSet.ans%></h5>
+                            <div class="form-group">
+                                <% if (data.questionType === 1) { %>
+                                    <label class="question-type">
+                                        <%=index+1%>) <%=data.question%>
+                                    </label>
+                                    <%data.answerKey.forEach(
+                                        answerSet => {
+                                            %>
+                                                <div class="radio">
+                                                    <label class="form-check-label">
+                                                        <input class="form-check-input" name="<%=data.id%>" type="radio" value="<%=data.question%>"/>
+                                                        <%=answerSet.ans%>
+                                                    </label>
+                                                </div>
+                                            <%
+                                        }
+                                    )%>                               
+                                <% } else if (data.questionType === 2) { %>
+                                    <label class="question-type">
+                                        <%=index+1%>) <%=data.question%>
+                                    </label>
+                                    <%data.answerKey.forEach(
+                                        answerSet => {
+                                            %>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" name="<%=data.id%>" value="<%=data.question%>"/>
+                                                        <%=answerSet.ans%>
+                                                    </label>
+                                                </div>
+                                            <%
+                                        }
+                                    )%>   
+                                <% } else { %>
+                                    <p>OTHER STUFF</p>
+                                <% } %>
+                            </div>
                         <%
                     }
                 )%>
-            <%
-            
-            }
-        )
-    %>
+                
+                <!-- Question Type 3 Rendered Block-->
+                <div class="form-group">
+                    <label class="question-type">Index Val. Sample Table With Radio Inputs</label>
+                    <table class="table">
+                        <thead class="thead">
+                            <tr>
+                                <th></th>
+                                <th>Very Important</th>
+                                <th>Important</th>
+                                <th>Considered</th>
+                                <th>Not Considered</th>
+                                <th>No Answer</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <!-- First table data should be the title for selection-->
+                                <td>Rigor of secondary school record</td>
+                                <td><input type="radio" name="questionId17_0" value="0"/></td>
+                                <td><input type="radio" name="questionId17_0" value="1"/></td>
+                                <td><input type="radio" name="questionId17_0" value="2"/></td>
+                                <td><input type="radio" name="questionId17_0" value="3"/></td>
+                                <td><input type="radio" name="questionId17_0" value="4"/></td>
+                            </tr>
+                            <tr>
+                                <td>Academic GPA</td>
+                                <td><input type="radio" name="questionId17_1" value="0"/></td>
+                                <td><input type="radio" name="questionId17_1" value="1"/></td>
+                                <td><input type="radio" name="questionId17_1" value="2"/></td>
+                                <td><input type="radio" name="questionId17_1" value="3"/></td>
+                                <td><input type="radio" name="questionId17_1" value="4"/></td>
+                            </tr>
+                            <tr>
+                                <td>Standardized test scores</td>
+                                <td><input type="radio" name="questionId17_2" value="0"/></td>
+                                <td><input type="radio" name="questionId17_2" value="1"/></td>
+                                <td><input type="radio" name="questionId17_2" value="2"/></td>
+                                <td><input type="radio" name="questionId17_2" value="3"/></td>
+                                <td><input type="radio" name="questionId17_2" value="4"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!--
+                        DATA STRUCTURE FOR TYPE 3
 
-    <!--<form id="localStorageTest" name="signupForm" method="POST" class="form-horizontal" action="/storeSurvey" novalidate>
-        
-        <div class="form-group">
-            <label for="colorName" class="input-label">
-                      What is your favorite color?
-                  </label>
-            <input type="text" name="color" id="colorName" placeholder="Color" class="form-control stored" value="" required/>
+                        {
+                            heading:[
+                                {th: ''},
+                                {th: 'Very Important'},
+                                {th: 'Important'},
+                                {th: 'Considered'},
+                                {th: 'Not Considered'},
+                                {th: 'No Answer'}
+                            ],
+                            set: [
+                                {td: 'Rigor of second school record'},
+                                {td: 'Academic GPA'},
+                                {td: 'Standardized test scores'}
+                                
+                            ]
+
+                        }
+                    -->
+                </div>
+
+                <div class="form-group">
+                    <button id="submitSurvey" class="btn btn-success">Submit Survey
+                </div>
+            </form>
         </div>
-        <div class="form-group">
-             <label for="colorName" class="input-label">
-                      What option number do you like?
-                  </label>
-            <div class="radio">
-                <label><input type="radio" name="radioOpt" value="High school diploma is required and GED is accepted"> High school diploma is required and GED is accepted</label>
-            </div>
-            <div class="radio">
-                <label><input type="radio" name="radioOpt" value="High school diploma is require and GED is not accepted"> High school diploma is require and GED is not accepted</label>
-            </div>
-            <div class="radio">
-                <label><input type="radio" name="radioOpt" value="High school diploma or equivalent is not required"> High school diploma or equivalent is not required</label>
-            </div>
-            <div class="radio">
-                <label><input type="radio" name="radioOpt" value="No answer"> No answer</label>
-            </div>
-        </div>
-         <div class="form-group">
-            <label for="checkboxSample" class="input-label">
-                Sample checkboxSample
-            </label>
-            <div class="checkbox">
-                <label><input type="checkbox" name="checkboxOpt" value="Selective admission for out-of-state students"> Selective admission for out-of-state students</label>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox" name="checkboxOpt" value="Selective admission to some programs"> Selective admission to some programs</label>
-            </div>
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-success"> Signup</button>
-        </div>
-    </form>-->
+    </div>
+</div>

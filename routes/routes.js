@@ -118,6 +118,8 @@ router.post('/survey', function(req, res){
     console.log('build survey');
     res.render('forms/survey'
     , {
+        email: req.body.email,
+        deptId: req.body.deptID,
         surveyData: {
             surveyName: "sample-name",
             questionKey: [
