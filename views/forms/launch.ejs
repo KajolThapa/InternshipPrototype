@@ -36,24 +36,34 @@
                             $.each(res, function(i, item){
                                 console.log("ITEM:: "+item);
                                 
+                        // array.forEach(function(element){
+                        //     console.log(element.value);
+                        // })       
+
+                        // vs.
+
+                        // for(var i = 0; i < array.length; i++){
+                        //     console.log(array[i].value);
+                        // }
+
                                 $('#surveyResponseList').append(
                                     '<li class="list-group-item">'+
-                                    '<div class="row">'+
-                                        '<div class="col-sm-1"></div>'+
-                                        '<div class="col-sm-6">'+
-                                            '<h3 class="list-group-item-heading">'+ item.survey + '</h4>'+
-                                            '<p class="list-group-item-text">'+ item.desc +'</p>'+
+                                        '<div class="row">'+
+                                            '<div class="col-sm-1"></div>'+
+                                            '<div class="col-sm-6">'+
+                                                '<h3 class="list-group-item-heading">'+ item.survey + '</h4>'+
+                                                '<p class="list-group-item-text">'+ item.desc +'</p>'+
+                                            '</div>'+
+                                            '<div class="col-sm-3">'+
+                                                '<p class="list-group-item-text"> Available until : '+ item.date + ' </p>'+
+                                                '<p class="list-group-item-text">'+ item.id + '</p>'+
+                                            '</div>'+
+                                            '<div class="col-sm-1">'+
+                                                '<button type="submit" name="startSurvey" value="'+ item.id +'" class="btn startSurvey">Start Survey</button>'+
+                                            '</div>'+
+                                            '<div class="col-sm-1"></div>'+
                                         '</div>'+
-                                        '<div class="col-sm-3">'+
-                                            '<p class="list-group-item-text"> Available until : '+ item.date + ' </p>'+
-                                            '<p class="list-group-item-text">'+ item.id + '</p>'+
-                                        '</div>'+
-                                        '<div class="col-sm-1">'+
-                                            '<button type="submit" name="startSurvey" value="'+ item.id +'" class="btn startSurvey" >Start Survey</button>'+
-                                        '</div>'+
-                                        '<div class="col-sm-1"></div>'+
-                                    '</div>'+
-                                '</li>'
+                                    '</li>'
                                 )
                             })
                         })

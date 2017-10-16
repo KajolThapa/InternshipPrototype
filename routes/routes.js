@@ -17,7 +17,15 @@ router.post('/getsurveylist', function(req, res){
     var deptID = req.body.deptID,
         email = req.body.email,
         deptName = req.body.deptName;
-        console.log(req.body);
+    console.log(req.body);
+
+    // Lives inside dbCtrl.js
+    // exports.getSurveys = function(deptID){
+    //     return 'SELECT * FROM SURVEYS_BANK WHERE department-id = deptID';
+    // }
+    
+    // res.json(dbCtrl.getSurveys(deptID));
+
     if(deptID == 0){
         res.json([{
             "id":"id-821",
@@ -121,6 +129,9 @@ router.post('/survey', function(req, res){
 
 router.post('/submit', function(req, res){
     console.log(req.body);
-    res.send('Data submitted to server');
+    res.send(
+        JSON.stringify(req.body, null, 4)
+    );
 })
+
 module.exports = router;
