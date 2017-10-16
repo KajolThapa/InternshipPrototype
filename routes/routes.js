@@ -13,11 +13,6 @@ router.get('/', function(req, res){
     });
 });
 
-router.get('/test', function(req, res){
-    res.render('forms/template');
-})
-
-
 router.post('/getsurveylist', function(req, res){
     var deptID = req.body.deptID,
         email = req.body.email,
