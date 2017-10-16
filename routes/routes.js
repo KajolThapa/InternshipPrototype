@@ -134,4 +134,47 @@ router.post('/submit', function(req, res){
     );
 })
 
+
+//Connecting to Database
+var oracledb = require('oracledb');  
+  router.get('/dbresult', function(req, res) {
+
+
+ 
+oracledb.getConnection({  
+     user: "system",  
+     password: "Eighten9121",  
+     connectString: "localhost/xe"  
+}, function(err, connection) {  
+     if (err) {  
+          console.error(err.message);  
+          return;  
+     }  
+     connection.execute( "SELECT * from AIRLINE",  
+       
+     function(err, result) {  
+          if (err) {  
+               console.error(err.message);  
+               doRelease(connection);  
+               return;  
+          }  
+          console.log(result.metaData);  
+          console.log(result.rows); 
+          res.send(JSON.stringify (result)); 
+          doRelease(connection);  
+     });  
+});  
+  
+function doRelease(connection) {  
+     connection.release(  
+          function(err) {  
+               if (err) {console.error(err.message);}  
+          }  
+     );  
+}  
+
+ });
+
+
+
 module.exports = router;
