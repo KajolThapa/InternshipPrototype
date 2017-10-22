@@ -85,4 +85,9 @@ label {
 
 .table {
     width:80%;
+    margin-left: 30px; 
+}
+
+.center-cell {
+    text-align: center;
 }
