@@ -44,6 +44,35 @@
                                             <%
                                         }
                                     )%>   
+                                <% } else if (data.questionType === 3) { %>
+                                    <label class="question-type">
+                                        <%=index+1%>) <%=data.question%>
+                                    </label>
+                                    <table class="table">
+                                        <thead class="thead">
+                                            <tr>
+                                                <th></th> <!-- This is left empty to maintain spacing-->
+                                                <%data.answerKey[0].heading.forEach(
+                                                    heading => {
+                                                        %>
+                                                            <th><%=heading.head%></th>
+                                                        <%
+                                                    }
+                                                )%>
+                                            </tr>
+                                            <tr>
+                                                <!-- WE ARE STARTING AT 2 TO SKIP HEADING AND LABEL ENTRIES IN JSON OBJECT-->
+                                                <% for(var sub = 1; sub<data.answerKey.length; sub++){ %>
+                                                    <% if (sub === 1) { %>
+                                                        <td><%=data.answerKey[sub].ans%></td>
+                                                    <% } else { %>
+                                                        <td><input type="radio" name="<%=data.id%>" value="<%=data.answerKey[sub].ans%>"/></td>
+                                                    <% } %>
+                                                <% } %>
+                                            </tr>
+                                        </thead>
+                                        
+                                    
                                 <% } else { %>
                                     <p>OTHER STUFF</p>
                                 <% } %>
@@ -52,11 +81,12 @@
                     }
                 )%>
                 
+
                 <!-- Question Type 3 Rendered Block-->
                 <div class="form-group">
-                    <label class="question-type">Index Val. Sample Table With Radio Inputs</label>
+                    <!--<label class="question-type">Index Value. Sample Rating Scale</label>-->
                     <table class="table">
-                        <thead class="thead">
+                        <!--<thead class="thead">
                             <tr>
                                 <th></th>
                                 <th>Very Important</th>
@@ -65,7 +95,31 @@
                                 <th>Not Considered</th>
                                 <th>No Answer</th>
                             </tr>
-                        </thead>
+                        </thead>-->
+                        <tbody>
+                            <tr> <!-- First Row with heading. Leave first td blank for space-->
+
+                            </tr>
+                            <tr>
+                                
+                            </tr>
+                    </table>
+                </div>
+
+                <!-- Question Type 4 Rendered Block-->
+                <div class="form-group">
+                    <label class="question-type">Index Val. Sample Table With Rating Matrix</label>
+                    <table class="table">
+                        <!--<thead class="thead">
+                            <tr>
+                                <th></th>
+                                <th>Very Important</th>
+                                <th>Important</th>
+                                <th>Considered</th>
+                                <th>Not Considered</th>
+                                <th>No Answer</th>
+                            </tr>
+                        </thead>-->
                         <tbody>
                             <tr>
                                 <!-- First table data should be the title for selection-->
