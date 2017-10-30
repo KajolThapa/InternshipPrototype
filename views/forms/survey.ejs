@@ -44,6 +44,47 @@
                                             <%
                                         }
                                     )%>   
+                                <% } else if (data.questionType === 3) { %>
+                                    <label class="question-type">
+                                        <%=index+1%>) <%=data.question%>
+                                    </label>
+                                    <table class="table">
+                                        <thead class="thead">
+                                            <tr>
+                                                <th></th> <!-- This is left empty to maintain spacing-->
+                                                <%data.answerKey[0].heading.forEach(
+                                                    heading => {
+                                                        %>
+                                                            <th class="center-cell"><%=heading.head%></th>
+                                                        <%
+                                                    }
+                                                )%>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <%data.answerKey[1].ansMatrix.forEach(
+                                                (matrixSet, subIndex) => {
+                                                    %>
+                                                        <tr>
+                                                        <!-- 
+                                                            Went with a standard for loop since the original data structure needed to skip the first two elements present.
+                                                            This is no longer the case, so this should eventually be refactored to a for-each
+                                                        -->
+                                                        <% for(var sub = 0; sub<matrixSet.set.length; sub++){ %>
+                                                            <!-- The first element in each set is the label of the matrix row. It's the description for the scale-->
+                                                            <% if (sub<1) { %>
+                                                                <td><%=matrixSet.set[sub].ans%></td>
+                                                            <% } else { %>
+                                                                <!---->
+                                                                <td class="center-cell"><input type="radio" name="<%=data.id%>_<%=subIndex%>" value="<%=matrixSet.set[sub].ans%>"/></td>
+                                                            <% } %>
+                                                        <% } %>
+                                                        </tr>
+                                                    <%
+                                                }
+                                            )%>
+                                        </tbody>
+                                    </table>
                                 <% } else { %>
                                     <p>OTHER STUFF</p>
                                 <% } %>
@@ -52,71 +93,6 @@
                     }
                 )%>
                 
-                <!-- Question Type 3 Rendered Block-->
-                <div class="form-group">
-                    <label class="question-type">Index Val. Sample Table With Radio Inputs</label>
-                    <table class="table">
-                        <thead class="thead">
-                            <tr>
-                                <th></th>
-                                <th>Very Important</th>
-                                <th>Important</th>
-                                <th>Considered</th>
-                                <th>Not Considered</th>
-                                <th>No Answer</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <!-- First table data should be the title for selection-->
-                                <td>Rigor of secondary school record</td>
-                                <td><input type="radio" name="questionId17_0" value="0"/></td>
-                                <td><input type="radio" name="questionId17_0" value="1"/></td>
-                                <td><input type="radio" name="questionId17_0" value="2"/></td>
-                                <td><input type="radio" name="questionId17_0" value="3"/></td>
-                                <td><input type="radio" name="questionId17_0" value="4"/></td>
-                            </tr>
-                            <tr>
-                                <td>Academic GPA</td>
-                                <td><input type="radio" name="questionId17_1" value="0"/></td>
-                                <td><input type="radio" name="questionId17_1" value="1"/></td>
-                                <td><input type="radio" name="questionId17_1" value="2"/></td>
-                                <td><input type="radio" name="questionId17_1" value="3"/></td>
-                                <td><input type="radio" name="questionId17_1" value="4"/></td>
-                            </tr>
-                            <tr>
-                                <td>Standardized test scores</td>
-                                <td><input type="radio" name="questionId17_2" value="0"/></td>
-                                <td><input type="radio" name="questionId17_2" value="1"/></td>
-                                <td><input type="radio" name="questionId17_2" value="2"/></td>
-                                <td><input type="radio" name="questionId17_2" value="3"/></td>
-                                <td><input type="radio" name="questionId17_2" value="4"/></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <!--
-                        DATA STRUCTURE FOR TYPE 3
-
-                        {
-                            heading:[
-                                {th: ''},
-                                {th: 'Very Important'},
-                                {th: 'Important'},
-                                {th: 'Considered'},
-                                {th: 'Not Considered'},
-                                {th: 'No Answer'}
-                            ],
-                            set: [
-                                {td: 'Rigor of second school record'},
-                                {td: 'Academic GPA'},
-                                {td: 'Standardized test scores'}
-                                
-                            ]
-
-                        }
-                    -->
-                </div>
-
                 <div class="form-group">
                     <button id="submitSurvey" class="btn btn-success">Submit Survey
                 </div>

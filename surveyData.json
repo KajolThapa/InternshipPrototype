@@ -54,6 +54,56 @@
                     "ans": "You know the organizers or participants"
                 }
             ]
+        }, {
+            "id": 72,
+            "question": "Rate your experience from 1-5",
+            "questionType": 3,
+            "answerKey": [
+                {
+                    "heading": [
+                        {"head": "Very Important"},
+                        {"head": "Important"},
+                        {"head": "Considered"},
+                        {"head": "Not Considered"},
+                        {"head": "No Answer"}
+                    ]
+                }, {
+                    "ansMatrix": [
+                        {"set" :[
+                            {"ans": "Sample Heading_1"}, 
+                            {"ans": "1"}, 
+                            {"ans": "2"}, 
+                            {"ans": "3"}, 
+                            {"ans": "4"}, 
+                            {"ans": "5"}
+                        ]},
+                        {"set" :[
+                            {"ans": "Sample Heading_2"}, 
+                            {"ans": "1"}, 
+                            {"ans": "2"}, 
+                            {"ans": "3"}, 
+                            {"ans": "4"}, 
+                            {"ans": "5"}
+                        ]},
+                        {"set" :[
+                            {"ans": "Sample Heading_3"}, 
+                            {"ans": "1"}, 
+                            {"ans": "2"}, 
+                            {"ans": "3"}, 
+                            {"ans": "4"}, 
+                            {"ans": "5"}
+                        ]},
+                        {"set" :[
+                            {"ans": "Sample Heading_4"}, 
+                            {"ans": "1"}, 
+                            {"ans": "2"}, 
+                            {"ans": "3"}, 
+                            {"ans": "4"}, 
+                            {"ans": "5"}
+                        ]}
+                    ]
+                }
+            ]
         }
     ]
 }
