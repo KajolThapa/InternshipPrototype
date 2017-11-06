@@ -10,7 +10,8 @@ create table Questions(
 quest_id int constraint quest_fk references Survey(survey_id), 
 quest_num int constraint q_numpk PRIMARY KEY,
 quest_type varchar(10),
-quest_name varchar(50));
+quest_name varchar(50),
+dep_name varchar(50));
 
 
 create table Answers(
