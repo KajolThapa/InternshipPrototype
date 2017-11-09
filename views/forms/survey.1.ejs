@@ -1,0 +1,41 @@
+<% layout('layout') -%>
+
+    <p><%=surveyData.surveyName%></p>
+
+    <%surveyData.questionKey.forEach(
+        data => {
+            %>
+                <h3><%=data.id%></h3>
+                <h4><%=data.question%></h4>
+
+                <% if (data.questionType === 1) { %>
+                    <p> QUESTION TYPE 1</p>
+                <% } else if (data.questionType === 2) { %>
+                    <p>QUESTION TYPE 2</p>
+                <% } else { %>
+                    <p>OTHER STUFF</p>
+                <% } %>
+                
+                <%data.answerKey.forEach(
+                    answerSet => {
+                        %>
+                            <h5><%=answerSet.ans%></h5>
+                        <%
+                    }
+                )%>
+            <%
+            
+            }
+        )
+    %>
+    
+<!-- {
+        id: 0,
+        question: "What is soap?",
+        questionType: 1, // single input, multiple choice (checkbox)
+        answerKey: [
+            { ans: "soapy" },
+            { ans: "super soap" },
+            { ans : "sub-soap" }
+        ]
+    } -->

@@ -1,0 +1,109 @@
+{
+    "surveyName": "Sample Survey",
+    "questionKey": [
+        {
+            "id": 0,
+            "question": "How long have you used our products/service?",
+            "questionType": 1,
+            "answerKey": [
+                {
+                    "ans": "Less than 6 months"
+                }, {
+                    "ans": "1 year to less than 3 years"
+                }, {
+                    "ans": "3 years to less than 5 years"
+                }, {
+                    "ans": "5 years or more"
+                }
+            ]
+        }, {
+            "id": 1,
+            "question": "Which range includes your age?",
+            "questionType": 1,
+            "answerKey": [
+                {
+                    "ans": "Younger than 18"
+                }, {
+                    "ans": "18 - 24"
+                }, {
+                    "ans": "25 - 34"
+                }, {
+                    "ans": "35 - 44"
+                }, {
+                    "ans": "45 - 54"
+                }, {
+                    "ans": "55 - 64"
+                }, {
+                    "ans": "65 or older"
+                }, {
+                    "ans": "Prefer not to answer"
+                }
+            ]
+        }, {
+            "id": 2,
+            "question": "Why did you attend our event? Select all that apply.",
+            "questionType": 2,
+            "answerKey": [
+                {
+                    "ans": "For networking"
+                }, {
+                    "ans": "Interest in event topic"
+                }, {
+                    "ans": "To support the organization"
+                }, {
+                    "ans": "You know the organizers or participants"
+                }
+            ]
+        }, {
+            "id": 72,
+            "question": "Rate your experience from 1-5",
+            "questionType": 3,
+            "answerKey": [
+                {
+                    "heading": [
+                        {"head": "Very Important"},
+                        {"head": "Important"},
+                        {"head": "Considered"},
+                        {"head": "Not Considered"},
+                        {"head": "No Answer"}
+                    ]
+                }, {
+                    "ansMatrix": [
+                        {"set" :[
+                            {"ans": "Sample Heading_1"}, 
+                            {"ans": "1"}, 
+                            {"ans": "2"}, 
+                            {"ans": "3"}, 
+                            {"ans": "4"}, 
+                            {"ans": "5"}
+                        ]},
+                        {"set" :[
+                            {"ans": "Sample Heading_2"}, 
+                            {"ans": "1"}, 
+                            {"ans": "2"}, 
+                            {"ans": "3"}, 
+                            {"ans": "4"}, 
+                            {"ans": "5"}
+                        ]},
+                        {"set" :[
+                            {"ans": "Sample Heading_3"}, 
+                            {"ans": "1"}, 
+                            {"ans": "2"}, 
+                            {"ans": "3"}, 
+                            {"ans": "4"}, 
+                            {"ans": "5"}
+                        ]},
+                        {"set" :[
+                            {"ans": "Sample Heading_4"}, 
+                            {"ans": "1"}, 
+                            {"ans": "2"}, 
+                            {"ans": "3"}, 
+                            {"ans": "4"}, 
+                            {"ans": "5"}
+                        ]}
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,137 @@
+<% layout('layout') -%>
+<div class="survey-render-container">
+    <div class="row">
+        <div class="survey">
+            <form name="surveyName" method="POST" class="form-horizontal" action="/submit">
+                <input type="hidden" name="email" value="email"/>
+                <input type="hidden" name="deptId" value="deptId"/>
+                
+                <!-- Question Type 1 Rendered Block-->
+                <div class="form-group">
+                    <!-- Question type 1-->
+                    <label class="question-type">
+                        Index Val. Check the appropriate box to identify your high school completion requirement for degree-seeking entering students.
+                    </label>
+                    <!-- Render One, Link To For Each-->
+                    <div class="radio">
+                        <label class="form-check-label">
+                            <input class="form-check-input" name="questionId2" type="radio" value="0"/>
+                            High school diploma is required and GED is accepted
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label class="form-check-label">
+                            <input class="form-check-input" name="questionId2" type="radio" value="1"/>
+                            High school diploma is required and GED is not accepted
+                        </label>
+                    </div>	
+                    <div class="radio">
+                        <label class="form-check-label">
+                            <input class="form-check-input" name="questionId2" type="radio" value="2"/>
+                            High school diploma or equivalent is not required
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label class="form-check-label">
+                            <input class="form-check-input" name="questionId2" type="radio" value="3"/>
+                            No answer
+                        </label>
+                    </div>		
+                </div>
+
+                <!-- Question Type 2 Rendered Block-->
+                <div class="form-group">
+                    <label class="question-type">Index Val. Select the following colors you like:</label>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="questionId82" value="0"/>
+                            Black
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="questionId82" value="1"/>
+                            Orange
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="questionId82" value="2"/>
+                            White
+                        </label>
+                    </div>
+                </div>
+
+
+                <!-- Question Type 3 Rendered Block-->
+                <div class="form-group">
+                    <label class="question-type">Index Val. Sample Table With Radio Inputs</label>
+                    <table class="table">
+                        <thead class="thead">
+                            <tr>
+                                <th></th>
+                                <th>Very Important</th>
+                                <th>Important</th>
+                                <th>Considered</th>
+                                <th>Not Considered</th>
+                                <th>No Answer</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <!-- First table data should be the title for selection-->
+                                <td>Rigor of secondary school record</td>
+                                <td><input type="radio" name="questionId17_0" value="0"/></td>
+                                <td><input type="radio" name="questionId17_0" value="1"/></td>
+                                <td><input type="radio" name="questionId17_0" value="2"/></td>
+                                <td><input type="radio" name="questionId17_0" value="3"/></td>
+                                <td><input type="radio" name="questionId17_0" value="4"/></td>
+                            </tr>
+                            <tr>
+                                <td>Academic GPA</td>
+                                <td><input type="radio" name="questionId17_1" value="0"/></td>
+                                <td><input type="radio" name="questionId17_1" value="1"/></td>
+                                <td><input type="radio" name="questionId17_1" value="2"/></td>
+                                <td><input type="radio" name="questionId17_1" value="3"/></td>
+                                <td><input type="radio" name="questionId17_1" value="4"/></td>
+                            </tr>
+                            <tr>
+                                <td>Standardized test scores</td>
+                                <td><input type="radio" name="questionId17_2" value="0"/></td>
+                                <td><input type="radio" name="questionId17_2" value="1"/></td>
+                                <td><input type="radio" name="questionId17_2" value="2"/></td>
+                                <td><input type="radio" name="questionId17_2" value="3"/></td>
+                                <td><input type="radio" name="questionId17_2" value="4"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!--
+                        DATA STRUCTURE FOR TYPE 3
+
+                        {
+                            heading:[
+                                {th: ''},
+                                {th: 'Very Important'},
+                                {th: 'Important'},
+                                {th: 'Considered'},
+                                {th: 'Not Considered'},
+                                {th: 'No Answer'}
+                            ],
+                            set: [
+                                {td: 'Rigor of second school record'},
+                                {td: 'Academic GPA'},
+                                {td: 'Standardized test scores'}
+                                
+                            ]
+
+                        }
+                    -->
+                </div>
+
+                <div class="form-group">
+                    <button id="submitSurvey" class="btn btn-success">Submit Survey
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

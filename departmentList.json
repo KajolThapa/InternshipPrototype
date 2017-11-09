@@ -1,0 +1,249 @@
+{
+  "departments": [{
+    "id": 0,
+    "name": "Administration and Finance"
+  }, {
+    "id": 1,
+    "name": "Admissions"
+  }, {
+    "id": 2,
+    "name": "African American Studies"
+  }, {
+    "id": 3,
+    "name": "Alumni Relations"
+  }, {
+    "id": 4,
+    "name": "Architectural Technology"
+  }, {
+    "id": 5,
+    "name": "ASAP"
+  }, {
+    "id": 6,
+    "name": "Assessment and Institutional Research"
+  }, {
+    "id": 7,
+    "name": "Athletics and Recreation"
+  }, {
+    "id": 8,
+    "name": "Atrium Learning Center"
+  }, {
+    "id": 9,
+    "name": "Biological Sciences"
+  }, {
+    "id": 10,
+    "name": "BMI"
+  }, {
+    "id": 11,
+    "name": "Bookstore"
+  }, {
+    "id": 12,
+    "name": "Buildings and Grounds  Bursar's Office"
+  }, {
+    "id": 13,
+    "name": "Business"
+  }, {
+    "id": 14,
+    "name": "Business Office"
+  }, {
+    "id": 15,
+    "name": "Career and Technology Teacher Education Center for Student Accessibility"
+  }, {
+    "id": 16,
+    "name": "Chemistry"
+  }, {
+    "id": 17,
+    "name": "Child Care Center"
+  }, {
+    "id": 18,
+    "name": "Collaborative Precollege Programs"
+  }, {
+    "id": 19,
+    "name": "Communication Design"
+  }, {
+    "id": 20,
+    "name": "Communications"
+  }, {
+    "id": 21,
+    "name": "Community and Government Relations"
+  }, {
+    "id": 22,
+    "name": "Computer Engineering Technology"
+  }, {
+    "id": 23,
+    "name": "Computer Systems Technology"
+  }, {
+    "id": 24,
+    "name": "Computing Information Services"
+  }, {
+    "id": 25,
+    "name": "Construction Management/Civil Engineering Technology"
+  }, {
+    "id": 26,
+    "name": "Continuing Education Counseling Center"
+  }, {
+    "id": 27,
+    "name": "CUNY EDGE (formerly COPE)"
+  }, {
+    "id": 28,
+    "name": "CUNY Language Immersion Program"
+  }, {
+    "id": 29,
+    "name": "CUNY Service Corps"
+  }, {
+    "id": 30,
+    "name": "Dental Hygiene"
+  }, {
+    "id": 31,
+    "name": "Development/City Tech Foundation"
+  }, {
+    "id": 32,
+    "name": "Division of Enrollment and Student Affairs"
+  }, {
+    "id": 33,
+    "name": "Electrical and Telecommunication Engineering Technology"
+  }, {
+    "id": 34,
+    "name": "English"
+  }, {
+    "id": 35,
+    "name": "Enrollment Management"
+  }, {
+    "id": 36,
+    "name": "Entertainment Technology"
+  }, {
+    "id": 37,
+    "name": "Environmental Control Technology/Facilities Management"
+  }, {
+    "id": 38,
+    "name": "Evening and Summer Sessions Office"
+  }, {
+    "id": 39,
+    "name": "Facilities and Operations"
+  }, {
+    "id": 40,
+    "name": "Faculty Commons"
+  }, {
+    "id": 41,
+    "name": "Financial Aid"
+  }, {
+    "id": 42,
+    "name": "First Year Program"
+  }, {
+    "id": 43,
+    "name": "Grants and Contracts"
+  }, {
+    "id": 44,
+    "name": "Health Services Administration"
+  }, {
+    "id": 45,
+    "name": "Hospitality Management"
+  }, {
+    "id": 46,
+    "name": "Human Services"
+  }, {
+    "id": 47,
+    "name": "Humanities"
+  }, {
+    "id": 48,
+    "name": "Image and Visual Communications"
+  }, {
+    "id": 49,
+    "name": "Immunization"
+  }, {
+    "id": 50,
+    "name": "Information Desk"
+  }, {
+    "id": 51,
+    "name": "Instructional Technology and Enhancement Centers"
+  }, {
+    "id": 52,
+    "name": "Law and Paralegal Studies"
+  }, {
+    "id": 53,
+    "name": "Library"
+  }, {
+    "id": 54,
+    "name": "Mathematics"
+  }, {
+    "id": 55,
+    "name": "Mechanical Engineering Technology"
+  }, {
+    "id": 56,
+    "name": "Media Services"
+  }, {
+    "id": 57,
+    "name": "New Student Center (Academic Advisement and Career)"
+  }, {
+    "id": 58,
+    "name": "Nursing  Office of Faculty and Staff Relations"
+  }, {
+    "id": 59,
+    "name": "Partnership Programs"
+  }, {
+    "id": 60,
+    "name": "Physics"
+  }, {
+    "id": 61,
+    "name": "President's Office  Professional Development Center"
+  }, {
+    "id": 62,
+    "name": "Property Management"
+  }, {
+    "id": 63,
+    "name": "Provost's Office"
+  }, {
+    "id": 64,
+    "name": "Public Affairs and Partnerships"
+  }, {
+    "id": 65,
+    "name": "Public Safety"
+  }, {
+    "id": 66,
+    "name": "Radiologic Tech/Medical Imaging"
+  }, {
+    "id": 67,
+    "name": "Registrar's Office"
+  }, {
+    "id": 68,
+    "name": "Restorative Dentistry"
+  }, {
+    "id": 69,
+    "name": "Scholarship and Residency Services"
+  }, {
+    "id": 70,
+    "name": "School Of Arts and Sciences"
+  }, {
+    "id": 71,
+    "name": "School Of Professional Studies"
+  }, {
+    "id": 72,
+    "name": "School Of Technology And Design"
+  }, {
+    "id": 73,
+    "name": "SEEK"
+  }, {
+    "id": 74,
+    "name": "Social Science"
+  }, {
+    "id": 75,
+    "name": "Special Counsel"
+  }, {
+    "id": 76,
+    "name": "Student Government Association"
+  }, {
+    "id": 77,
+    "name": "Student Life and Development"
+  }, {
+    "id": 78,
+    "name": "Student Wellness Center"
+  }, {
+    "id": 79,
+    "name": "Testing Office"
+  }, {
+    "id": 80,
+    "name": "Transfer Student Center and Recruitment"
+  }, {
+    "id": 81,
+    "name": "Veterans Support Services  Vision Care Technology"
+  }]
+}
