@@ -1,6 +1,6 @@
 var express = require('express'),
-    router = express.Router();
-    // async = require('async');
+    router = express.Router(),
+    async = require('async');
 
 // Static departments for now
 var departmentList = require('../departmentList.json');
@@ -56,25 +56,25 @@ router.post('/survey', function(req, res){
         let questionBuild = [];
         // Array.prototype.forEach() does not apply to callbacks. 
         // Can't be used to append data to the array
-        // questionIdList.forEach((question)=>{
-        for (var i = 0; i < questionIdList.length; i++){
-            console.log(questionIdList[i]);
-            db.getQuestionData(questionIdList[i], function(data){
-                questionBuild.push(data[0]);
-                // console.log(JSON.stringify(data[0], null, 4));
-                // One the form submit thing with the deptID included is fixed, 
-                // pass the value to the render. Needed for storing data
-                // res.render('forms/survey', {
-                //     questionData: data,
-                //     email: req.body.email,
-                //     deptId: req.body.deptID
-                // })
-                // console.log(i);
-                i++;
-            });
-        }
-        // });
-        console.log(questionBuild);
+        async.each(
+            questionIdList, // array of data
+            (item, callback)=>{
+                callback(
+                    db.getQuestionData(item, function(data){
+                        questionBuild.push(data[0]);
+                        console.log(data[0]);
+                    })
+                )
+            }, 
+            function(err, result){
+                if(err){
+                    console.log(err);
+                    return;
+                }
+                console.log("result:: " + questionBuild);
+            }
+            
+        )   
     })
     // console.log("Post survey:: "+ JSON.stringify(req.body));
     res.render('forms/survey', {
