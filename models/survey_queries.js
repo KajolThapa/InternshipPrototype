@@ -17,7 +17,7 @@ function openConnection(query, data){
             //     outFormat: oracledb.OBJECT
             // }
             // });
-            data(result.rows[0]);
+            data(result.rows);
             resolve(result.rows[0]);
             // console.log(result);
             // doRelease(connection);
@@ -47,10 +47,10 @@ function openConnection(query, data){
     // })
 }
 
-exports.test = function() {
+exports.test = function(queryReturn) {
     let sql = "SELECT * from DEPARTMENT_TABLE";
-    openConnection(sql, function(at){
-        console.log("data:: " + at);
+    openConnection(sql, function(data){
+        queryReturn(data);
     });
 }
 

@@ -14,7 +14,9 @@ var db = require('../models/survey_queries');
 
 router.get('/', function(req, res){
     // console.log(departmentList.departments);
-    db.test();
+    db.test(function(data){
+        res.send(data);
+    });
     // return res.render('forms/launch', {
     //     title : "launch",
     //     list : departmentList
