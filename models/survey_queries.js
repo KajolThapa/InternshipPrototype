@@ -3,7 +3,7 @@ let oracledb = require('oracledb');
 function openConnection(query, queryReturn){
     oracledb.getConnection({
         user: "system",
-        password: "Eighten9121",
+        password: "Unicorn18",
         connectString: "localhost/xe"
     }, function (err, connection) {
         if (err) {
@@ -12,16 +12,17 @@ function openConnection(query, queryReturn){
         }
         // Execute the query, get response
         connection.execute(query, (err, result)=>{
+            // console.log("query -- "+query);
             if(err){
                 console.error(err.message);
                 doRelease(connection);
                 return;
             }
             // return the results of query
-            console.log(result.metaData);
-            console.log(result.rows);
+            // console.log(result.metaData);
+            // JSON.stringify(4,result, null);
             // Callback should return data when query is complete
-            queryReturn(JSON.stringify(result));
+            queryReturn(result);
             doRelease(connection);
         });
         // Release connection to database
@@ -35,11 +36,20 @@ function openConnection(query, queryReturn){
     })
 }
 
-
-exports.getSurveys = function(department){
-    let sql = "SELECT survey_id, survey_name, survey_desc, date_released FROM DEPARTMENT_TABLE WHERE dept_id = " + department;
+exports.test = function() {
+    let sql = "SELECT * from DEPARTMENT_TABLE";
     openConnection(sql, function(result){
         console.log(result);
+    });
+}
+
+exports.getSurveys = function(department){
+    // console.log(department + " -- dept");
+    // let sql = "SELECT survey_id, survey_name, survey_desc, date_released FROM DEPARTMENT_TABLE WHERE dept_id = " + department;
+    let sql = "select * from department_table";
+    // console.log(sql);
+    openConnection(sql, function(result){
+        console.log(result, null);
     });
 }
 
