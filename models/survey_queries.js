@@ -2,7 +2,8 @@ let oracledb = require('oracledb');
 
 function openConnection(query, data){
     // Execute the query, get response
-    return new Promise(async function(resolve, reject) {
+    // return new Promise(async function(resolve, reject) {
+    return new Promise(async function(reject) {
         let connection;
         try {
             connection = await oracledb.getConnection({
@@ -11,25 +12,12 @@ function openConnection(query, data){
                 connectString: "localhost/xe"
             });
 
-            let result = await connection.execute(query);
-            // , {
-            // let result = await connection.execute("SELECT * from DEPARTMENT_TABLE");
-            //     outFormat: oracledb.OBJECT
-            // }
-            // });
+            let result = await connection.execute(
+                // Execute query, null binding, return as JSON
+                query, [], { outFormat: oracledb.OBJECT }
+            );
+            // call back returns response
             data(result.rows);
-            resolve(result.rows[0]);
-            // console.log(result);
-            // doRelease(connection);
-            
-            // // Release connection to database
-            // function doRelease(connection) {
-            //     connection.release(
-            //         function (err) {
-            //             if (err) { console.error(err.message); }
-            //         }
-            //     );
-            // }
         } catch (err){
             console.log('Error occurred', err);
             reject(err);  
@@ -54,22 +42,24 @@ exports.test = function(queryReturn) {
     });
 }
 
-exports.getSurveys = function(department){
+exports.getSurveys = function(department, queryReturn){
     // console.log(department + " -- dept");
     let sql = "SELECT survey_id, survey_name, survey_desc, date_released FROM DEPARTMENT_TABLE WHERE dept_id = " + department;
     // let sql = "SELECT * from DEPARTMENT_TABLE";
     // console.log(sql);
-    openConnection(sql);
-}
-
-exports.getSurveyQuestionList = function(department, survey){
-    let sql = "SELECT survey_questions FROM DEPARTMENT_TABLE WHERE dept_id = " + department + " AND survey_id = " + survey;
-    openConnection(sql, function(result){
-        console.log(result);
+    openConnection(sql, function(data){
+        queryReturn(data);
     });
 }
 
-exports.getQuestionData = function(question){
+exports.getSurveyQuestionList = function(department, survey, queryReturn){
+    let sql = "SELECT survey_questions FROM DEPARTMENT_TABLE WHERE dept_id = " + department + " AND survey_id = " + survey;
+    openConnection(sql, function(data){
+        queryReturn(data);
+    });
+}
+
+exports.getQuestionData = function(question, queryReturn){
     let sql = "SELECT * FROM QUESTIONS_TABLE WHERE question_id = " + question;
     openConnection(sql, function(result){
         // forEach() -> append to json object and pass to render

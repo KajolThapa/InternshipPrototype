@@ -14,13 +14,13 @@ var db = require('../models/survey_queries');
 
 router.get('/', function(req, res){
     // console.log(departmentList.departments);
-    db.test(function(data){
-        res.send(data);
-    });
-    // return res.render('forms/launch', {
-    //     title : "launch",
-    //     list : departmentList
+    // db.test(function(data){
+    //     res.send(data);
     // });
+    return res.render('forms/launch', {
+        title : "launch",
+        list : departmentList
+    });
 });
 
 // router.get('/', function(req, res){
@@ -34,7 +34,10 @@ router.post('/getsurveylist', function(req, res){
         deptName = req.body.deptName;
     // console.log(db.getSurveys(deptID));
     // console.log(db.test());
-    console.log(db.getSurveys(deptID));
+    db.getSurveys(deptID, function(data){
+        console.log(data);
+        res.send(data);
+    });
     // console.log('getting email :: '+ email);
     // console.log('getting dept id :: '+ deptId);
 })

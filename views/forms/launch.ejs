@@ -34,32 +34,25 @@
                         console.log(res);
                         $(function(){
                             $.each(res, function(i, item){
+                                // Needs to be stringified due to db output
+                                // item = JSON.stringify(item);
                                 console.log("ITEM:: "+item);
-                                
-                        // array.forEach(function(element){
-                        //     console.log(element.value);
-                        // })       
-
-                        // vs.
-
-                        // for(var i = 0; i < array.length; i++){
-                        //     console.log(array[i].value);
-                        // }
-
+                                // ITEM:: {"SURVEY_ID":55,"SURVEY_NAME":"Sample","SURVEY_DESC":"AIR Surveys","DATE_RELEASED":"2017-04-28T05:00:00.000Z"}
+                                console.log(item.SURVEY_DESC);
                                 $('#surveyResponseList').append(
                                     '<li class="list-group-item">'+
                                         '<div class="row">'+
                                             '<div class="col-sm-1"></div>'+
                                             '<div class="col-sm-6">'+
-                                                '<h3 class="list-group-item-heading">'+ item.survey + '</h4>'+
-                                                '<p class="list-group-item-text">'+ item.desc +'</p>'+
+                                                '<h3 class="list-group-item-heading">'+ item.SURVEY_NAME + '</h4>'+
+                                                '<p class="list-group-item-text">'+ item.SURVEY_DESC +'</p>'+
                                             '</div>'+
                                             '<div class="col-sm-3">'+
-                                                '<p class="list-group-item-text"> Available until : '+ item.date + ' </p>'+
-                                                '<p class="list-group-item-text">'+ item.id + '</p>'+
+                                                '<p class="list-group-item-text"> Available until : '+ item.DATE_RELEASED.slice(0,10) + ' </p>'+
+                                                '<p class="list-group-item-text"> Survey ID : '+ item.SURVEY_ID + '</p>'+
                                             '</div>'+
                                             '<div class="col-sm-1">'+
-                                                '<button type="submit" name="startSurvey" value="'+ item.id +'" class="btn startSurvey">Start Survey</button>'+
+                                                '<button type="submit" name="startSurvey" value="'+ item.SURVEY_ID +'" class="btn startSurvey">Start Survey</button>'+
                                             '</div>'+
                                             '<div class="col-sm-1"></div>'+
                                         '</div>'+
