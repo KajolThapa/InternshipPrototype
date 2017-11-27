@@ -1,56 +1,65 @@
 let oracledb = require('oracledb');
 
-function openConnection(query, queryReturn){
-    oracledb.getConnection({
-        user: "system",
-        password: "Unicorn18",
-        connectString: "localhost/xe"
-    }, function (err, connection) {
-        if (err) {
-            console.error(err.message);
-            return;
-        }
-        // Execute the query, get response
-        connection.execute(query, (err, result)=>{
-            // console.log("query -- "+query);
-            if(err){
-                console.error(err.message);
-                doRelease(connection);
-                return;
-            }
-            // return the results of query
-            // console.log(result.metaData);
-            // JSON.stringify(4,result, null);
-            // Callback should return data when query is complete
-            queryReturn(result);
-            doRelease(connection);
-        });
-        // Release connection to database
-        function doRelease(connection) {
-            connection.release(
-                function (err) {
-                    if (err) { console.error(err.message); }
+function openConnection(query, data){
+    // Execute the query, get response
+    return new Promise(async function(resolve, reject) {
+        let connection;
+        try {
+            connection = await oracledb.getConnection({
+                user: "system",
+                password: "Unicorn18",
+                connectString: "localhost/xe"
+            });
+
+            let result = await connection.execute(query);
+            // , {
+            // let result = await connection.execute("SELECT * from DEPARTMENT_TABLE");
+            //     outFormat: oracledb.OBJECT
+            // }
+            // });
+            data(result.rows[0]);
+            resolve(result.rows[0]);
+            // console.log(result);
+            // doRelease(connection);
+            
+            // // Release connection to database
+            // function doRelease(connection) {
+            //     connection.release(
+            //         function (err) {
+            //             if (err) { console.error(err.message); }
+            //         }
+            //     );
+            // }
+        } catch (err){
+            console.log('Error occurred', err);
+            reject(err);  
+        } finally {
+            if(connection){
+                try {
+                    await connection.close();
+                    console.log("connection closed");
+                } catch (err) {
+                    console.log('Error closing connection', err);
                 }
-            );
+            }
         }
-    })
+    });
+    // })
 }
 
 exports.test = function() {
     let sql = "SELECT * from DEPARTMENT_TABLE";
-    openConnection(sql, function(result){
-        console.log(result);
+    openConnection(sql, function(at){
+        console.log("data:: " + at);
     });
 }
 
 exports.getSurveys = function(department){
     // console.log(department + " -- dept");
-    // let sql = "SELECT survey_id, survey_name, survey_desc, date_released FROM DEPARTMENT_TABLE WHERE dept_id = " + department;
-    let sql = "select * from department_table";
+    let sql = "SELECT survey_id, survey_name, survey_desc, date_released FROM DEPARTMENT_TABLE WHERE dept_id = " + department;
+    // let sql = "SELECT * from DEPARTMENT_TABLE";
     // console.log(sql);
-    openConnection(sql, function(result){
-        console.log(result, null);
-    });
+    openConnection(sql);
 }
 
 exports.getSurveyQuestionList = function(department, survey){

@@ -1,0 +1,7 @@
+@IF EXIST "%~dp0\node.exe" (
+  "%~dp0\node.exe"  "%~dp0\..\mincer\bin\mincer.js" %*
+) ELSE (
+  @SETLOCAL
+  @SET PATHEXT=%PATHEXT:;.JS;=;%
+  node  "%~dp0\..\mincer\bin\mincer.js" %*
+)

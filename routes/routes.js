@@ -15,10 +15,10 @@ var db = require('../models/survey_queries');
 router.get('/', function(req, res){
     // console.log(departmentList.departments);
     db.test();
-    return res.render('forms/launch', {
-        title : "launch",
-        list : departmentList
-    });
+    // return res.render('forms/launch', {
+    //     title : "launch",
+    //     list : departmentList
+    // });
 });
 
 // router.get('/', function(req, res){
@@ -32,7 +32,7 @@ router.post('/getsurveylist', function(req, res){
         deptName = req.body.deptName;
     // console.log(db.getSurveys(deptID));
     // console.log(db.test());
-    // res.json(db.getSurveys(deptID));
+    console.log(db.getSurveys(deptID));
     // console.log('getting email :: '+ email);
     // console.log('getting dept id :: '+ deptId);
 })
