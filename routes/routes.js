@@ -32,6 +32,7 @@ router.post('/getsurveylist', function(req, res){
     var deptID = req.body.deptID,
         email = req.body.email,
         deptName = req.body.deptName;
+        // console.log(deptID);
     // console.log(db.getSurveys(deptID));
     // console.log(db.test());
     db.getSurveys(deptID, function(data){
@@ -44,8 +45,16 @@ router.post('/getsurveylist', function(req, res){
 
 router.post('/survey', function(req, res){
 // router.get('/survey/:email/:deptid/:surveyId', function(req, res){
-    console.log(req.body);
-    console.log('build survey');
+    db.getSurveyQuestionList(req.body.startSurvey, function(data){
+        let questionIdList = data[0].SURVEY_QUESTIONS.split(','); // Yeah...
+        questionIdList.forEach((question)=>{
+            console.log(question);
+            db.getQuestionData(question, function(data){
+                console.log(data);
+            });
+        });
+    })
+    // console.log("Post survey:: "+ JSON.stringify(req.body));
     res.render('forms/survey', {
         email: req.body.email,
         deptId: req.body.deptID,

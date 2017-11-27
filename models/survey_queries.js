@@ -35,12 +35,12 @@ function openConnection(query, data){
     // })
 }
 
-exports.test = function(queryReturn) {
-    let sql = "SELECT * from DEPARTMENT_TABLE";
-    openConnection(sql, function(data){
-        queryReturn(data);
-    });
-}
+// exports.test = function(queryReturn) {
+//     let sql = "SELECT * from DEPARTMENT_TABLE";
+//     openConnection(sql, function(data){
+//         queryReturn(data);
+//     });
+// }
 
 exports.getSurveys = function(department, queryReturn){
     // console.log(department + " -- dept");
@@ -52,18 +52,22 @@ exports.getSurveys = function(department, queryReturn){
     });
 }
 
-exports.getSurveyQuestionList = function(department, survey, queryReturn){
-    let sql = "SELECT survey_questions FROM DEPARTMENT_TABLE WHERE dept_id = " + department + " AND survey_id = " + survey;
+exports.getSurveyQuestionList = function(/*department, */survey, queryReturn){
+
+    let sql = "SELECT survey_questions FROM DEPARTMENT_TABLE WHERE survey_id = " + 56 /*survey*/;
+    // There should be double validation to render the survey. For time, it's left out. Needs to recieve a dept_id from post
+    // let sql = "SELECT survey_questions FROM DEPARTMENT_TABLE WHERE dept_id = " + department + " AND survey_id = " + survey;
     openConnection(sql, function(data){
         queryReturn(data);
     });
 }
 
 exports.getQuestionData = function(question, queryReturn){
-    let sql = "SELECT * FROM QUESTIONS_TABLE WHERE question_id = " + question;
-    openConnection(sql, function(result){
-        // forEach() -> append to json object and pass to render
-        console.log(result);
+    let sql = "SELECT * FROM QUESTION_TABLE WHERE question_id = " + question;
+    console.log(sql);
+    openConnection(sql, function(data){
+        console.log("Inside query: "+data);
+        queryReturn(data);
     });
 }
 
