@@ -35,13 +35,15 @@ function openConnection(query, data){
     // })
 }
 
-// exports.test = function(queryReturn) {
-//     let sql = "SELECT * from DEPARTMENT_TABLE";
-//     openConnection(sql, function(data){
-//         queryReturn(data);
-//     });
-// }
+exports.test = function(queryReturn) {
+    let sql = "SELECT * from question_table";
+    openConnection(sql, function(data){
+        queryReturn(data);
+    });
+}
 
+
+// CLEARED //
 exports.getSurveys = function(department, queryReturn){
     // console.log(department + " -- dept");
     let sql = "SELECT survey_id, survey_name, survey_desc, date_released FROM DEPARTMENT_TABLE WHERE dept_id = " + department;
@@ -51,7 +53,7 @@ exports.getSurveys = function(department, queryReturn){
         queryReturn(data);
     });
 }
-
+// CLEARED //
 exports.getSurveyQuestionList = function(/*department, */survey, queryReturn){
 
     let sql = "SELECT survey_questions FROM DEPARTMENT_TABLE WHERE survey_id = " + 56 /*survey*/;
@@ -62,11 +64,12 @@ exports.getSurveyQuestionList = function(/*department, */survey, queryReturn){
     });
 }
 
+// CLEARED //
 exports.getQuestionData = function(question, queryReturn){
     let sql = "SELECT * FROM QUESTION_TABLE WHERE question_id = " + question;
     console.log(sql);
     openConnection(sql, function(data){
-        console.log("Inside query: "+data);
+        // console.log("Inside query: " + data);
         queryReturn(data);
     });
 }
