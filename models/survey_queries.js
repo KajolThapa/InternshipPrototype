@@ -17,7 +17,7 @@ function openConnection(query, data){
                 query, [], { outFormat: oracledb.OBJECT }
             );
             // call back returns response
-            console.log(result);
+            // console.log(result);
             data(result.rows);
         } catch (err){
             console.log('Error occurred', err);
@@ -44,6 +44,12 @@ exports.test = function(queryReturn) {
     });
 }
 
+exports.getDeptList = function(queryReturn){
+    let sql = "SELECT * FROM DEPARTMENTS";
+    openConnection(sql, function(data){
+        queryReturn(data);
+    })
+}
 
 // CLEARED //
 exports.getSurveys = function(department, queryReturn){

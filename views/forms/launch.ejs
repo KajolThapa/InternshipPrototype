@@ -119,7 +119,7 @@
                         <label for="departments" class="input-label">Enter in Department Name to Get List of Surveys</label>
                         <input name="departments" type="text" id="departments" list="dept-list" placeholder="Enter In Department" class="form-control stored"/>
                         <datalist id="dept-list">
-                            <%list.departments.forEach( department => {%><option data-value="<%=department.id%>" value="<%=department.name%>"></option><%})%>;
+                            <%list.departments.forEach( department => {%><option data-value="<%=department.DEPT_ID%>" value="<%=department.DEPT_NAME%>"></option><%})%>;
                         </datalist>
                         <!-- Empty input which stores the dept id-->
                         <input type="hidden" name="deptID" id="deptID" />
