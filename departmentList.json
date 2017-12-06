@@ -37,7 +37,7 @@
     "name": "Bookstore"
   }, {
     "id": 12,
-    "name": "Buildings and Grounds  Bursar's Office"
+    "name": "Buildings and Grounds"
   }, {
     "id": 13,
     "name": "Business"
@@ -184,7 +184,7 @@
     "name": "Physics"
   }, {
     "id": 61,
-    "name": "President's Office  Professional Development Center"
+    "name": "President's Office"
   }, {
     "id": 62,
     "name": "Property Management"
@@ -244,6 +244,15 @@
     "name": "Transfer Student Center and Recruitment"
   }, {
     "id": 81,
-    "name": "Veterans Support Services  Vision Care Technology"
+    "name": "Veterans Support Services "
+  }, {
+    "id": 82,
+    "name": "Vision Care Technology"
+  }, {
+    "id": 83,
+    "name": "Bursar's Office"
+  }, {
+    "id": 84,
+    "name": "Professional Development Center"
   }]
 }

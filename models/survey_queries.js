@@ -8,15 +8,16 @@ function openConnection(query, data){
         try {
             connection = await oracledb.getConnection({
                 user: "system",
-                password: "Unicorn18",
+                password: "poznan",
                 connectString: "localhost/xe"
             });
-
+            
             let result = await connection.execute(
                 // Execute query, null binding, return as JSON
                 query, [], { outFormat: oracledb.OBJECT }
             );
             // call back returns response
+            console.log(result);
             data(result.rows);
         } catch (err){
             console.log('Error occurred', err);
@@ -36,8 +37,9 @@ function openConnection(query, data){
 }
 
 exports.test = function(queryReturn) {
-    let sql = "SELECT * from question_table";
+    let sql = "SELECT * FROM sample_table";
     openConnection(sql, function(data){
+        // console.log(data);
         queryReturn(data);
     });
 }
