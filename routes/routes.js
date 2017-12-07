@@ -14,13 +14,14 @@ var db = require('../models/survey_queries');
 
 
 router.get('/', function(req, res){
-    let departmentList;
-    db.getDeptList(function(deptList){
-        return res.render('forms/launch', {
-            title : "launch",
-            list : {"departments":deptList}
-        });
-    });
+    db.getSurveysById('1');
+    // let departmentList;
+    // db.getDeptList(function(deptList){
+    //     return res.render('forms/launch', {
+    //         title : "launch",
+    //         list : {"departments":deptList}
+    //     });
+    // });
 });
 
 
