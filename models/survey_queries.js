@@ -51,12 +51,16 @@ exports.getDeptList = function(queryReturn){
     })
 }
 
+
+
 // CLEARED //
 exports.getSurveys = function(department, queryReturn){
     // console.log(department + " -- dept");
-    let sql = "SELECT survey_id, survey_name, survey_desc, date_released FROM DEPARTMENT_TABLE WHERE dept_id = " + department;
+    // let sql = "select survey_id from survey_connection where dept_id = " + department;
+
+    let sql = "SELECT survey_id, survey_name, survey_document_id, survey_desc, survey_start_time, survey_end_time FROM SURVEY WHERE dept_id = " + department;
     // let sql = "SELECT * from DEPARTMENT_TABLE";
-    // console.log(sql);
+    console.log(sql);
     openConnection(sql, function(data){
         queryReturn(data);
     });

@@ -20,9 +20,7 @@ router.get('/', function(req, res){
             title : "launch",
             list : {"departments":deptList}
         });
-
     });
-
 });
 
 
@@ -30,16 +28,10 @@ router.post('/getsurveylist', function(req, res){
     var deptID = req.body.deptID,
         email = req.body.email,
         deptName = req.body.deptName;
-        // console.log(deptID);
-    // console.log(db.getSurveys(deptID));
-    // console.log(db.test());
+
     db.getSurveys(deptID, function(data){
-        // console.log(data);
-        
         res.send(data);
     });
-    // console.log('getting email :: '+ email);
-    // console.log('getting dept id :: '+ deptId);
 })
 
 router.post('/survey', function(req, res){
