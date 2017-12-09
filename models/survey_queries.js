@@ -1,7 +1,7 @@
 let oracledb = require('oracledb');
 let async = require('async');
 
-function openConnection(query, data){
+function openConnection(query, binding, data){
     // Execute the query, get response
     // return new Promise(async function(resolve, reject) {
     return new Promise(async function(reject) {
@@ -12,18 +12,23 @@ function openConnection(query, data){
                 password: "poznan",
                 connectString: "localhost/xe"
             });
-            
-            let result = await connection.execute(
-                // Execute query, null binding, return as JSON
-                query, [], { outFormat: oracledb.OBJECT }
-            );
+            // let sampleArray = [];
+            // for(i=0; i<queryCT; i++){
+                let result = await connection.execute(
+                    // Execute query, null binding, return as JSON
+                    query, binding, { outFormat: oracledb.OBJECT }
+                );
+                // sampleArray.push(result.rows);
+            // }
+            // console.log(sampleArray);
             // call back returns response
             // console.log(result);
             data(result.rows);
         } catch (err){
             console.log('Error occurred', err);
             reject(err);  
-        } finally {
+        } 
+        finally {
             if(connection){
                 try {
                     await connection.close();
@@ -47,70 +52,93 @@ function openConnection(query, data){
 
 exports.getDeptList = function(queryReturn){
     let sql = "SELECT * FROM DEPARTMENTS";
-    openConnection(sql, function(data){
+    openConnection(sql, [], function(data){
         queryReturn(data);
     })
 }
 
 
 
-exports.getSurveysById = function(deptId){
+exports.getSurveysById = function(deptId, queryReturn){
     console.log('before waterfall:: '+ deptId);
     async.waterfall([
         getSurveyId(deptId),
         getSurveyListing
-    ], function (err, success){
-        if(err){
-            return "error";
-        }
-        console.log("Return val:: "+JSON.stringify(success));
-    })
+    ], queryReturn)
+    // , function (err, success){
+    //     if(err){
+    //         return "error";
+    //     }
+    //     console.log("Return val:: "+JSON.stringify(success));
+    // })
 }
 
 function getSurveyId(deptId){
     return function(cb){
-        let sql = "select survey_id, complete from survey_connection where dept_id = "+ deptId;
+        let sql = "select survey_id from survey_connection where dept_id = "+ deptId;
         console.log(sql);
-        openConnection(sql, function(data){
-            // console.log(data);
+        openConnection(sql, [], function(data){
+            console.log(data);
             cb(null, data);
         });
     }
 }
 
 function getSurveyListing(data, callback){
-    console.log(data);
-    let dataset = [];
-    async.each(data, function(item, index, arr){
-        let sql = "select * from survey where survey_id = "+ item.SURVEY_ID;
-        console.log(sql);
-        
-        dataset.push({
-            id:item, 
-            data: openConnection(
-                sql, function(ret){
-                    return ret;
-                }).then(function(echo){
-                    return echo;
-                }
-            )
-            }
-        )
+    // console.log(data[0].SURVEY_ID);
+    // console.log('Array Length:: ' + data.length);
+    // let dataset = [];
+    let list = [];
+    let sql = "select * from survey where survey_id = :id";
+
+    for(i = 0; i < data.length; i++){
+        list.push(data[i].SURVEY_ID);
+        if(i<data.length-1)
+            sql += ' OR survey_id = :id';
+    }
+    console.log(list);
+    console.log(sql);
+
+    openConnection(sql, list, function(data){
+        callback(data);
     })
-    console.log(dataset);
-    callback(dataset);
+
+    // openConnection("select * from survey where survey_id = ", data, data.length, function(ret){
+    //     console.log(ret);
+    // })
+
+    // async.each(data, function(item, index, arr){
+    //     let sql = "select * from survey where survey_id = "+ item.SURVEY_ID;
+    //     console.log(sql);
+        
+    //     // dataset.push({
+    //     //     id:item, 
+    //     //     data: openConnection(
+    //     //         sql, function(ret){
+    //     //             return ret;
+    //     //         }
+    //     //     )
+    //     // })
+    //     openConnection(
+    //         sql, data.length, function(ret){
+    //             return ret;
+    //         }
+    //     )
+    // })
+    // console.log(dataset)
+    // callback(d);
 }
 
 
 // CLEARED //
-exports.getSurveys = function(department, queryReturn){
-    let sql = "select survey_id, complete from survey_connection where dept_id = "+ department;
+// exports.getSurveys = function(department, queryReturn){
+//     let sql = "select survey_id from survey_connection where dept_id = "+ department;
     
-    console.log(sql);
-    openConnection(sql, function(data){
-        queryReturn(data);
-    });
-}
+//     console.log(sql);
+//     openConnection(sql, function(data){
+//         queryReturn(data);
+//     });
+// }
 // CLEARED //
 exports.getSurveyQuestionList = function(/*department, */survey, queryReturn){
 
