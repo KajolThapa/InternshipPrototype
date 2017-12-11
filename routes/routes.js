@@ -88,5 +88,8 @@ router.post('/submit', function(req, res){
     // );
 })
 
+db.getQuestionsBySurveyId(1, (data)=>{
+    console.log(data);
+})
 
 module.exports = router;

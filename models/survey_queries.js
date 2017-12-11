@@ -39,16 +39,8 @@ function openConnection(query, binding, data){
             }
         }
     });
-    // })
 }
 
-// exports.test = function(queryReturn) {
-//     let sql = "SELECT * FROM sample_table";
-//     openConnection(sql, function(data){
-//         // console.log(data);
-//         queryReturn(data);
-//     });
-// }
 
 exports.getDeptList = function(queryReturn){
     let sql = "SELECT * FROM DEPARTMENTS";
@@ -64,13 +56,7 @@ exports.getSurveysById = function(deptId, queryReturn){
     async.waterfall([
         getSurveyId(deptId),
         getSurveyListing
-    ], queryReturn)
-    // , function (err, success){
-    //     if(err){
-    //         return "error";
-    //     }
-    //     console.log("Return val:: "+JSON.stringify(success));
-    // })
+    ], queryReturn) 
 }
 
 function getSurveyId(deptId){
@@ -102,50 +88,14 @@ function getSurveyListing(data, callback){
     openConnection(sql, list, function(data){
         callback(data);
     })
-
-    // openConnection("select * from survey where survey_id = ", data, data.length, function(ret){
-    //     console.log(ret);
-    // })
-
-    // async.each(data, function(item, index, arr){
-    //     let sql = "select * from survey where survey_id = "+ item.SURVEY_ID;
-    //     console.log(sql);
-        
-    //     // dataset.push({
-    //     //     id:item, 
-    //     //     data: openConnection(
-    //     //         sql, function(ret){
-    //     //             return ret;
-    //     //         }
-    //     //     )
-    //     // })
-    //     openConnection(
-    //         sql, data.length, function(ret){
-    //             return ret;
-    //         }
-    //     )
-    // })
-    // console.log(dataset)
-    // callback(d);
 }
 
-
-// CLEARED //
-// exports.getSurveys = function(department, queryReturn){
-//     let sql = "select survey_id from survey_connection where dept_id = "+ department;
-    
-//     console.log(sql);
-//     openConnection(sql, function(data){
-//         queryReturn(data);
-//     });
-// }
-// CLEARED //
 exports.getSurveyQuestionList = function(/*department, */survey, queryReturn){
 
     let sql = "SELECT survey_questions FROM DEPARTMENT_TABLE WHERE survey_id = " + 56 /*survey*/;
     // There should be double validation to render the survey. For time, it's left out. Needs to recieve a dept_id from post
     // let sql = "SELECT survey_questions FROM DEPARTMENT_TABLE WHERE dept_id = " + department + " AND survey_id = " + survey;
-    openConnection(sql, function(data){
+    openConnection(sql, [], function(data){
         queryReturn(data);
     });
 }
@@ -154,7 +104,7 @@ exports.getSurveyQuestionList = function(/*department, */survey, queryReturn){
 exports.getQuestionData = function(question, queryReturn){
     let sql = "SELECT * FROM QUESTION_TABLE WHERE question_id = " + question;
     console.log(sql);
-    openConnection(sql, function(data){
+    openConnection(sql, [], function(data){
         // console.log("Inside query: " + data);
         queryReturn(data);
     });
@@ -165,7 +115,7 @@ function storeData(question_id, answer){
     let sql = "INSERT INTO ANSWER_STORED_TABLE (question_id_selected, answer_selected) " +
                 'VALUES (\''+question_id+'\',\''+answer+'\')';
 
-    openConnection(sql, function(result){
+    openConnection(sql, [], function(result){
         // forEach() -> append to json object and pass to render
         console.log(result);
     });
@@ -179,4 +129,45 @@ exports.storeSurveyResponse = function(surveyResponse){
             storeData(question_id, surveyResponse[question_id]);
         }
     });
+}
+
+
+
+// get survey data
+
+
+exports.getQuestionsBySurveyId = function(surveyId, queryReturn){
+    async.waterfall([
+        getQuestionList(surveyId),
+        parseResults
+    ], queryReturn)
+}
+
+function getQuestionList(surveyId){
+    return function(cb){
+        let sql = "select survey_question from survey where survey_id = " + surveyId;
+        openConnection(sql, [], (data)=>{
+            cb(null, data);
+        })
+    }
+}
+
+function parseResults(queryReturn, cb){
+    console.log(queryReturn);
+    let parentList = [],
+        childList = [];
+    let parsedQuestionsList = queryReturn[0].SURVEY_QUESTION.split(',');
+    console.log(parsedQuestionsList);
+    parsedQuestionsList.forEach((data, index)=>{
+        console.log(data);
+        if(data.includes("_")){
+            let child = data.split("_");
+            childList.push(child[1]);
+            parentList.push(child[0]);
+        } else {
+            childList.push(0);
+            parentList.push(data);
+        }
+    });
+    cb([parentList, childList]);
 }
