@@ -72,36 +72,6 @@
                 $('#surveyResponseList').empty();
                 $('.survey-response-container').show("fast");
             })
-
-            // https://api.jquery.com/on/  -- Look at Delegated events.
-            // Using .on() allows us to process events at a later time after all elements of the page load. 
-            // $(document).on('click', '.startSurvey',function(){
-            //     var test = $(this).val();
-            //     console.log(test);
-            // })
-
-            // NOTE-- DO NOT USE AJAX TO PERFORM REDIRECTS
-            // $(document).on('click', '.startSurvey',function(){
-            //     var surveyId = $(this).val(),
-            //         deptId = $('#deptID').val(),
-            //         email = $('#email').val();
-
-
-            //     // $.get('/survey/' + email + '/' + deptId + '/' + surveyId);
-            //     $.ajax({
-            //         type: 'POST',
-            //         url: '/survey',
-            //         data : {
-            //             email : email,
-            //             deptId : deptId,
-            //             surveyId : surveyId 
-            //         },
-            //         success: function(res){
-            //             // document.write
-            //             // window.location.href = res.data;
-            //         }
-            //     });
-            // })
         })
     </script>
 

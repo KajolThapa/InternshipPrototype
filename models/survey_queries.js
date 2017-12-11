@@ -1,17 +1,22 @@
 let oracledb = require('oracledb');
 let async = require('async');
 
+let dbConfig = require('./config.js').oracledb;
+//console.log(dbConfig);
+
+// {
+//     user: "system",
+//     password: "poznan",
+//     connectString: "localhost/xe"
+// }
+
 function openConnection(query, binding, data){
     // Execute the query, get response
     // return new Promise(async function(resolve, reject) {
     return new Promise(async function(reject) {
         let connection;
         try {
-            connection = await oracledb.getConnection({
-                user: "system",
-                password: "poznan",
-                connectString: "localhost/xe"
-            });
+            connection = await oracledb.getConnection(dbConfig);
             // let sampleArray = [];
             // for(i=0; i<queryCT; i++){
                 let result = await connection.execute(

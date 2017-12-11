@@ -7,6 +7,20 @@ var express = require('express'),
     logger = require('morgan');
 
 var routes = require('./routes/routes');
+var dbconfig = require('./models/config.js').oracledb;
+console.log(dbconfig);
+
+var messages = [{userId: 2, content: "Salam"}, {userId: 5, content: "Hello"},{userId: 4, content: "Moi"}];
+var users = [{userid: 2, name: "Grace"}, {userid: 4, name: "Janetta"},{userid: 5, name: "Sara"}];
+
+var messagesWithUserNames = messages.map((msg)=> {
+  var haveEqualId = (user) => user.userid == msg.userId
+  var userWithEqualId= users.find(haveEqualId)
+  return Object.assign({}, msg, userWithEqualId)
+})
+console.log(messagesWithUserNames);
+
+
 
 // Define a port for node to run in. Take either a custom port when deployed, or default to 3000
 app.set('port', process.env.PORT || 3000);
@@ -48,3 +62,4 @@ app.listen(app.get('port'), function () {
     console.log('\nExpress listening on port %d in %s mode \n\n\n',
         app.get('port'), app.get('env'));
 });
+
