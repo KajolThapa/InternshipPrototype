@@ -64,7 +64,6 @@ function cleanQuestionIds(queryReturn, callback){
 
 }
 
-
 function buildQuestionMappingAndQuerySet(queryReturn, cb){
         let questionListMapping = [];
         let parentList = [], childList = [];
@@ -95,7 +94,6 @@ function buildQuestionMappingAndQuerySet(queryReturn, cb){
         // console.log(questionQueryList);
         cb(null, questionListMapping, questionQueryList, sql);
 }
-
 
 function returnMappingObject(parent, child){
     return {"QUESTION_ID": parent, "SUB_QUESTION_ID": child};
@@ -136,8 +134,32 @@ function rebuildMapForRender(questionListMapping, questionData, answerSet, callb
     // // console.log(updatedQuestionList);
     // callback(updatedQuestionList);
 
-    console.log(answerSet);
-    console.log(questionData);
+
+//     [ { ANSWER_ID: 2, ANSWER_SET: 'Units Required>Units Recommended' },
+//     { ANSWER_ID: 4,
+//       ANSWER_SET: 'Selective admission for out-of-state students>Selective admissi
+//   ons to some programs' } ]
+//   [ { QUESTION_ID: 1,
+//       QUESTION_TYPE: 1,
+//       QUESTION_STRING: 'Does your institution require or recommend a general colle
+//   ge-preparatory program for degree-seeking students?',
+//       ANSWER_ID: 2 },
+  
+
+    let mergedAnswers = questionData.map((questionReference)=>{
+        let sameAnswerId = (queryResult)=> queryResult.ANSWER_ID == questionReference.ANSWER_ID;
+        let hasAnsID = answerSet.find(sameAnswerId);
+        return Object.assign({}, questionReference, hasAnsID);
+    });
+    console.log(mergedAnswers);
+
+    let finalSurveyQuestionSet = questionListMapping.map((questionRenderMap)=>{
+        let checkQuestionId = (questionSet) => questionSet.QUESTION_ID == questionRenderMap.QUESTION_ID;
+        let checkSubQuestionId = (questionSet) => questionSet.QUESTION_ID == questionRenderMap.SUB_QUESTION_ID;
+        let hasQuestionId = mergedAnswers.find(checkQuestionId, checkSubQuestionId);
+        return Object.assign({}, questionRenderMap, hasQuestionId);
+    })
+    console.log(finalSurveyQuestionSet);
 }
 
 function getAnswerSet(questionListMapping, questionData, callback){

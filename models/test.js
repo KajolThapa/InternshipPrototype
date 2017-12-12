@@ -35,34 +35,34 @@
 // match a questionId from the object questionMap, I want you to check if it is in subQuestionId. If a match is found,
 // concatenate the result like you did in the sample before*/
 
-var questionMap =  [
-    {"question_id": 1, "subQuestionId": null},
-    {"question_id": 2, "subQuestionId": 15},
-    {"question_id": 2, "subQuestionId": 16},
-    {"question_id": 2, "subQuestionId": 17},
-    {"question_id": 4, "subQuestionId": null}
+var questionMap = [
+  { "question_id": 1, "subQuestionId": null },
+  { "question_id": 2, "subQuestionId": 15 },
+  { "question_id": 2, "subQuestionId": 16 },
+  { "question_id": 2, "subQuestionId": 17 },
+  { "question_id": 4, "subQuestionId": null }
 ]
 
 
 
 var queryReturn = [
-{"question_id":1, question_type:1, question_string: "sample question 1", answer_id:2},
-{"question_id":2, question_type:3, question_string: "Question Heading", answer_id:5},
-{"question_id":15, question_type:3, question_string: "question matrix 1", answer_id:7},
-{"question_id":16, question_type:3, question_string: "question matrix 2", answer_id:8},
-{"question_id":17, question_type:2, question_string: "question matrix 3", answer_id:9},
-{"question_id":4, question_type:3, question_string: "sample question 8", answer_id:16}
+  { "question_id": 1, question_type: 1, question_string: "sample question 1", answer_id: 2 },
+  { "question_id": 2, question_type: 3, question_string: "Question Heading", answer_id: 5 },
+  { "question_id": 15, question_type: 3, question_string: "question matrix 1", answer_id: 7 },
+  { "question_id": 16, question_type: 3, question_string: "question matrix 2", answer_id: 8 },
+  { "question_id": 17, question_type: 2, question_string: "question matrix 3", answer_id: 9 },
+  { "question_id": 4, question_type: 3, question_string: "sample question 8", answer_id: 16 }
 ]
 
 
 var answerReturn = [
-{answer_id:2, answer_set:'sample1, sample2, sample3'},
-{answer_id:5, answer_set:'heading1, heading2, heading3'},
-{answer_id:7, answer_set:'1, 2, 3'},
-{answer_id:8, answer_set:'1, 2, 3'},
-{answer_id:9, answer_set:'1, 2, 3'},
-{answer_id:16, answer_set:'1, 2, 3'},
-{answer_id:2, answer_set:'math, sci, eng'}
+  { answer_id: 2, answer_set: 'sample1, sample2, sample3' },
+  { answer_id: 5, answer_set: 'heading1, heading2, heading3' },
+  { answer_id: 7, answer_set: '1, 2, 3' },
+  { answer_id: 8, answer_set: '1, 2, 3' },
+  { answer_id: 9, answer_set: '1, 2, 3' },
+  { answer_id: 16, answer_set: '1, 2, 3' },
+  { answer_id: 2, answer_set: 'math, sci, eng' }
 ]
 
 // var merge1 = queryReturn.map((query)=> {
@@ -75,12 +75,14 @@ var answerReturn = [
 
 
 
-var merge2 = questionMap.map((question)=> {
-  var checkquestionid = (query)=>  query.question_id == question.question_id
-  var checksubquestionid = (query)=> query.question_id == question.subQuestionId
+
+
+var merge2 = questionMap.map((question) => {
+  var checkquestionid = (query) => query.question_id == question.question_id
+  var checksubquestionid = (query) => query.question_id == question.subQuestionId
   console.log(queryReturn);
   var ifsameid = queryReturn.find(checkquestionid, checksubquestionid)
-  return Object.assign({}, question,ifsameid )
+  return Object.assign({}, question, ifsameid)
 })
 console.log('Merging queryReturn into questionMap');
 // console.log(merge2);
@@ -108,3 +110,168 @@ console.log('Merging queryReturn into questionMap');
 // var array2 = ["Singh", "Shakya"];
 // var array3 = array1.concat(array2).unique(); 
 // console.log(array3);
+
+
+
+// [ { question_id: 1,
+//   question_type: 1,
+//   question_string: 'sample question 1',
+//   answer_id: 2 },
+// { question_id: 2,
+//   question_type: 3,
+//   question_string: 'Question Heading',
+//   answer_id: 5 },
+// { question_id: 15,
+//   question_type: 3,
+//   question_string: 'question matrix 1',
+//   answer_id: 7 },
+// { question_id: 16,
+//   question_type: 3,
+//   question_string: 'question matrix 2',
+//   answer_id: 8 },
+// { question_id: 17,
+//   question_type: 2,
+//   question_string: 'question matrix 3',
+//   answer_id: 9 },
+// { question_id: 4,
+//   question_type: 3,
+//   question_string: 'sample question 8',
+//   answer_id: 16 } ]
+// [ { question_id: 1,
+//   question_type: 1,
+//   question_string: 'sample question 1',
+//   answer_id: 2 },
+// { question_id: 2,
+//   question_type: 3,
+//   question_string: 'Question Heading',
+//   answer_id: 5 },
+// { question_id: 15,
+//   question_type: 3,
+//   question_string: 'question matrix 1',
+//   answer_id: 7 },
+// { question_id: 16,
+//   question_type: 3,
+//   question_string: 'question matrix 2',
+//   answer_id: 8 },
+// { question_id: 17,
+//   question_type: 2,
+//   question_string: 'question matrix 3',
+//   answer_id: 9 },
+// { question_id: 4,
+//   question_type: 3,
+//   question_string: 'sample question 8',
+//   answer_id: 16 } ]
+// [ { question_id: 1,
+//   question_type: 1,
+//   question_string: 'sample question 1',
+//   answer_id: 2 },
+// { question_id: 2,
+//   question_type: 3,
+//   question_string: 'Question Heading',
+//   answer_id: 5 },
+// { question_id: 15,
+//   question_type: 3,
+//   question_string: 'question matrix 1',
+//   answer_id: 7 },
+// { question_id: 16,
+//   question_type: 3,
+//   question_string: 'question matrix 2',
+//   answer_id: 8 },
+// { question_id: 17,
+//   question_type: 2,
+//   question_string: 'question matrix 3',
+//   answer_id: 9 },
+// { question_id: 4,
+//   question_type: 3,
+//   question_string: 'sample question 8',
+//   answer_id: 16 } ]
+// [ { question_id: 1,
+//   question_type: 1,
+//   question_string: 'sample question 1',
+//   answer_id: 2 },
+// { question_id: 2,
+//   question_type: 3,
+//   question_string: 'Question Heading',
+//   answer_id: 5 },
+// { question_id: 15,
+//   question_type: 3,
+//   question_string: 'question matrix 1',
+//   answer_id: 7 },
+// { question_id: 16,
+//   question_type: 3,
+//   question_string: 'question matrix 2',
+//   answer_id: 8 },
+// { question_id: 17,
+//   question_type: 2,
+//   question_string: 'question matrix 3',
+//   answer_id: 9 },
+// { question_id: 4,
+//   question_type: 3,
+//   question_string: 'sample question 8',
+//   answer_id: 16 } ]
+// [ { question_id: 1,
+//   question_type: 1,
+//   question_string: 'sample question 1',
+//   answer_id: 2 },
+// { question_id: 2,
+//   question_type: 3,
+//   question_string: 'Question Heading',
+//   answer_id: 5 },
+// { question_id: 15,
+//   question_type: 3,
+//   question_string: 'question matrix 1',
+//   answer_id: 7 },
+// { question_id: 16,
+//   question_type: 3,
+//   question_string: 'question matrix 2',
+//   answer_id: 8 },
+// { question_id: 17,
+//   question_type: 2,
+//   question_string: 'question matrix 3',
+//   answer_id: 9 },
+// { question_id: 4,
+//   question_type: 3,
+//   question_string: 'sample question 8',
+//   answer_id: 16 } ]
+
+[{
+  QUESTION_ID: 1,
+  QUESTION_TYPE: 1,
+  QUESTION_STRING: 'Does your institution require or recommend a general colle
+ge-preparatory program for degree - seeking students?',
+  ANSWER_ID: 2
+},
+{
+  QUESTION_ID: 2,
+  QUESTION_TYPE: 4,
+  QUESTION_STRING: 'Distribution of high school units required and/or recommen
+ded. (CDS C5) Specify the distribution of academic high school course units requ
+ired and / or recommended of all or most degree - seeking students using Carnegie un
+its(one unit equals one year of study or its equivalent).If you use a differen
+t system for calculating units, please convert.',
+  ANSWER_ID: 2 },
+{
+  QUESTION_ID: 4,
+  QUESTION_TYPE: 2,
+  QUESTION_STRING: 'Open admission policy as described above for most students
+  , but',
+  ANSWER_ID: 4
+},
+{
+  QUESTION_ID: 15,
+  QUESTION_TYPE: 4,
+  QUESTION_STRING: 'Academic electives',
+  ANSWER_ID: 2
+},
+{
+  QUESTION_ID: 16,
+  QUESTION_TYPE: 4,
+  QUESTION_STRING: 'Computer Science',
+  ANSWER_ID: 2
+},
+{
+  QUESTION_ID: 17,
+  QUESTION_TYPE: 4,
+  QUESTION_STRING: 'Visual, Performing Arts',
+  ANSWER_ID: 2
+}]
