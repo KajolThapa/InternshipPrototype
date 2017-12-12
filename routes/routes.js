@@ -12,6 +12,8 @@ var surveyQuestions = require('../surveyData.json');
 
 var db = require('../models/survey_queries');
 
+var dbTesting = require('../models/finalSurveyQueries');
+
 
 router.get('/', function(req, res){
     // let departmentList;
@@ -88,7 +90,11 @@ router.post('/submit', function(req, res){
     // );
 })
 
-db.getQuestionsBySurveyId(1, (data)=>{
+// db.getQuestionsBySurveyId(1, (data)=>{
+//     console.log(data);
+// })
+
+dbTesting.getQuestionsBySurveyId(1, (data)=>{
     console.log(data);
 })
 

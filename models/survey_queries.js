@@ -2,13 +2,6 @@ let oracledb = require('oracledb');
 let async = require('async');
 
 let dbConfig = require('./config.js').oracledb;
-//console.log(dbConfig);
-
-// {
-//     user: "system",
-//     password: "poznan",
-//     connectString: "localhost/xe"
-// }
 
 function openConnection(query, binding, data){
     // Execute the query, get response
@@ -17,17 +10,10 @@ function openConnection(query, binding, data){
         let connection;
         try {
             connection = await oracledb.getConnection(dbConfig);
-            // let sampleArray = [];
-            // for(i=0; i<queryCT; i++){
-                let result = await connection.execute(
-                    // Execute query, null binding, return as JSON
-                    query, binding, { outFormat: oracledb.OBJECT }
-                );
-                // sampleArray.push(result.rows);
-            // }
-            // console.log(sampleArray);
-            // call back returns response
-            // console.log(result);
+            let result = await connection.execute(
+                // Execute query, null binding, return as JSON
+                query, binding, { outFormat: oracledb.OBJECT }
+            );
             data(result.rows);
         } catch (err){
             console.log('Error occurred', err);
@@ -46,15 +32,12 @@ function openConnection(query, binding, data){
     });
 }
 
-
 exports.getDeptList = function(queryReturn){
     let sql = "SELECT * FROM DEPARTMENTS";
     openConnection(sql, [], function(data){
         queryReturn(data);
     })
 }
-
-
 
 exports.getSurveysById = function(deptId, queryReturn){
     console.log('before waterfall:: '+ deptId);
@@ -76,9 +59,6 @@ function getSurveyId(deptId){
 }
 
 function getSurveyListing(data, callback){
-    // console.log(data[0].SURVEY_ID);
-    // console.log('Array Length:: ' + data.length);
-    // let dataset = [];
     let list = [];
     let sql = "select * from survey where survey_id = :id";
 
@@ -176,3 +156,29 @@ function parseResults(queryReturn, cb){
     });
     cb([parentList, childList]);
 }
+
+function returnMappingObject(parent, child){
+    return {"questionId": parent, "subQuestionId": child};
+}
+
+function buildQuestionMapping(queryReturn, cb){
+    let questionListMapping = [];
+    queryReturn.forEach((data, index)=>{
+        if(data.includes('_')){
+            let temp = data.split('_');
+            // temp[0] is the parent of the matrix
+            questionListMapping.push(returnMappingObject(temp[0], temp[1]));
+        } else {
+            questionListMapping.push(returnMappingObject(data, null));
+        }
+    });
+    cb(questionListMapping);
+}
+
+// buildQuestionMapping(['1', '2_15', '2_16', '2_17', '4'], function(data){
+//     console.log("Return from mapping:: "+data);
+// }) 
+
+
+
+

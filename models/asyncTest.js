@@ -1,4 +1,4 @@
-// let async = require('async');
+let async = require('async');
 // let data = [1,4,3,18, 19];
 // async.each(data, function(item, index, arr){
 //     // console.log("each", item, index, arr);
@@ -13,6 +13,26 @@ let sample = [
     console.log('echo'),
     delta
 ];
+
+async.waterfall([
+    function(callback){
+        console.log('echo1');
+      callback(null, 'one', 'two');
+    },
+    function(arg1, arg2, callback){
+      callback(null, 'three');
+    },
+    function(arg1, callback){
+        console.log('echo3');
+      // arg1 now equals 'three' 
+      callback(null, 'done');
+    }
+  ], function (err, result) {
+    // result now equals 'done' 
+    console.log(result);
+  });
+
+
 
 
 // let execArray = [];
