@@ -34,16 +34,14 @@ function openConnection(query, binding, data){
 
 exports.getQuestionsBySurveyId = function(surveyId, queryReturn){
     async.waterfall([
-        getQuestionList(surveyId),
-        cleanQuestionIds,
-        buildQuestionMappingAndQuerySet
+        getQuestionList(surveyId) 
+        ,cleanQuestionIds // commas at start are intentional. Saves a second or two for adjusting postion when testing
+        ,buildQuestionMappingAndQuerySet
         ,getQuestionData
         ,getAnswerSet
         ,rebuildMapForRender
     ], queryReturn)
-    // ], function(err, test){
-    //     console.log(test);
-    // });
+
 }
 
 
@@ -57,9 +55,7 @@ function getQuestionList(surveyId, cb){
 }
 
 function cleanQuestionIds(queryReturn, callback){
-    // return function(callback){
     let parsedQuestionsList = queryReturn[0].SURVEY_QUESTION.split(',');
-    // console.log(parsedQuestionsList);
     callback(null, parsedQuestionsList);    
 
 }
@@ -74,7 +70,6 @@ function buildQuestionMappingAndQuerySet(queryReturn, cb){
         queryReturn.forEach((data, index)=>{
             if(data.includes('_')){
                 let temp = data.split('_');
-                // temp[0] is the parent of the matrix
                 questionListMapping.push(returnMappingObject(temp[0], temp[1]));
                 childList.push(temp[1]);
                 parentList.push(temp[0]);
@@ -90,8 +85,6 @@ function buildQuestionMappingAndQuerySet(queryReturn, cb){
         for(i = 0; i <questionQueryList.length-1; i++){
             sql += " OR question_id = :id";
         }
-        // console.log(sql);
-        // console.log(questionQueryList);
         cb(null, questionListMapping, questionQueryList, sql);
 }
 
@@ -120,32 +113,6 @@ function getQuestionData(questionListMapping, questionQueryList, sql, callback){
 }
 
 function rebuildMapForRender(questionListMapping, questionData, answerSet, callback){
-    // console.log(questionData);
-    // // console.log(questionListMapping);
-    // let updatedQuestionList = []; // This holds our original question map along with the 
-    //                             // question data returned by the query
-    // let questionMerge = questionListMapping.map((question)=>{
-    //     let checkQuestionId = (query)=> query.QUESTION_ID == question.QUESTION_ID
-    //     let checkSubQuestionId = (query)=> query.QUESTION_ID == question.SUB_QUESTION_ID
-    //     let ifSameId = questionData.find(checkQuestionId, checkSubQuestionId);
-    //     updatedQuestionList = Object.assign({}, question, ifSameId);
-    // });
-
-    // // console.log(updatedQuestionList);
-    // callback(updatedQuestionList);
-
-
-//     [ { ANSWER_ID: 2, ANSWER_SET: 'Units Required>Units Recommended' },
-//     { ANSWER_ID: 4,
-//       ANSWER_SET: 'Selective admission for out-of-state students>Selective admissi
-//   ons to some programs' } ]
-//   [ { QUESTION_ID: 1,
-//       QUESTION_TYPE: 1,
-//       QUESTION_STRING: 'Does your institution require or recommend a general colle
-//   ge-preparatory program for degree-seeking students?',
-//       ANSWER_ID: 2 },
-  
-
     let mergedAnswers = questionData.map((questionReference)=>{
         let sameAnswerId = (queryResult)=> queryResult.ANSWER_ID == questionReference.ANSWER_ID;
         let hasAnsID = answerSet.find(sameAnswerId);
@@ -159,7 +126,7 @@ function rebuildMapForRender(questionListMapping, questionData, answerSet, callb
         let hasQuestionId = mergedAnswers.find(checkQuestionId, checkSubQuestionId);
         return Object.assign({}, questionRenderMap, hasQuestionId);
     })
-    console.log(finalSurveyQuestionSet);
+    callback(finalSurveyQuestionSet);
 }
 
 function getAnswerSet(questionListMapping, questionData, callback){
