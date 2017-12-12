@@ -40,13 +40,15 @@ router.post('/getsurveylist', function(req, res){
 router.post('/survey', function(req, res){
 // router.get('/survey/:email/:deptid/:surveyId', function(req, res){
     // Maybe we have to add pooling?
-    console.log(req.body.startSurvey);
+    // console.log(req.body.startSurvey);
+    let surveyId = req.body.startSurvey;
     // https://github.com/oracle/node-oracledb/blob/cd1eb6eb406296259ca23fa9e7ed148c2baab090/examples/webapp.js
     dbTesting.getQuestionsBySurveyId(req.body.startSurvey, function(data){
         // console.log(data);
         res.render('forms/survey', {
             email: req.body.email,
             deptId: req.body.deptID,
+            surveyId: surveyId,
             surveyData: data
         });
     })

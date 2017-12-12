@@ -3,20 +3,25 @@
     <div class="row">
         <div class="survey">
 
-            <h4><%=surveyData.surveyName%></h4>
+            <h4><%=surveyId%></h4>
             <form name="surveyName" method="POST" class="form-horizontal" action="/submit">
                 <input type="hidden" name="email" value="<%=email%>"/>
                 <input type="hidden" name="deptId" value="<%=deptId%>"/>
                 
-                <%surveyData.questionKey.forEach(
+                <!-- email: req.body.email,
+                deptId: req.body.deptID,
+                surveyId: surveyId,
+                surveyData: data -->
+
+                <%surveyData.forEach(
                     (data, index) => {
                         %>
                             <div class="form-group">
-                                <% if (data.questionType === 1) { %>
+                                <% if (data.QUESTION_TYPE === 1) { %>
                                     <label class="question-type">
-                                        <%=index+1%>) <%=data.question%>
+                                        <%=index+1%>) <%=data.QUESTION_STRING%>
                                     </label>
-                                    <%data.answerKey.forEach(
+                                    <%data.ANSWER_SET.forEach(
                                         answerSet => {
                                             %>
                                                 <div class="radio">
@@ -28,11 +33,11 @@
                                             <%
                                         }
                                     )%>                               
-                                <% } else if (data.questionType === 2) { %>
+                                <% } else if (data.QUESTION_TYPE === 2) { %>
                                     <label class="question-type">
-                                        <%=index+1%>) <%=data.question%>
+                                        <%=index+1%>) <%=data.QUESTION_STRING%>
                                     </label>
-                                    <%data.answerKey.forEach(
+                                    <%data.ANSWER_SET.forEach(
                                         answerSet => {
                                             %>
                                                 <div class="checkbox">
@@ -44,9 +49,9 @@
                                             <%
                                         }
                                     )%>   
-                                <% } else if (data.questionType === 3) { %>
+                                <% } else if (data.QUESTION_TYPE === 3) { %>
                                     <label class="question-type">
-                                        <%=index+1%>) <%=data.question%>
+                                        <%=index+1%>) <%=data.QUESTION_STRING%>
                                     </label>
                                     <table class="table">
                                         <thead class="thead">
@@ -86,7 +91,7 @@
                                         </tbody>
                                     </table>
                                 <% } else { %>
-                                    <p>OTHER STUFF</p>
+                                    <p><%=JSON.stringify(data)%></p>
                                 <% } %>
                             </div>
                         <%

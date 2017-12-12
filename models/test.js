@@ -77,14 +77,14 @@ var answerReturn = [
 
 
 
-var merge2 = questionMap.map((question) => {
-  var checkquestionid = (query) => query.question_id == question.question_id
-  var checksubquestionid = (query) => query.question_id == question.subQuestionId
-  console.log(queryReturn);
-  var ifsameid = queryReturn.find(checkquestionid, checksubquestionid)
-  return Object.assign({}, question, ifsameid)
-})
-console.log('Merging queryReturn into questionMap');
+// var merge2 = questionMap.map((question) => {
+//   var checkquestionid = (query) => query.question_id == question.question_id
+//   var checksubquestionid = (query) => query.question_id == question.subQuestionId
+//   console.log(queryReturn);
+//   var ifsameid = queryReturn.find(checkquestionid, checksubquestionid)
+//   return Object.assign({}, question, ifsameid)
+// })
+// console.log('Merging queryReturn into questionMap');
 // console.log(merge2);
 
 
@@ -112,166 +112,71 @@ console.log('Merging queryReturn into questionMap');
 // console.log(array3);
 
 
+let sample = JSON.parse('[{"ans": "Yes"}, {"ans": "No"}, {"ans": "Maybe"}]');
+console.log(sample[1]);
+// let(sample.substring(1, sample.length-1));
 
-// [ { question_id: 1,
-//   question_type: 1,
-//   question_string: 'sample question 1',
-//   answer_id: 2 },
-// { question_id: 2,
-//   question_type: 3,
-//   question_string: 'Question Heading',
-//   answer_id: 5 },
-// { question_id: 15,
-//   question_type: 3,
-//   question_string: 'question matrix 1',
-//   answer_id: 7 },
-// { question_id: 16,
-//   question_type: 3,
-//   question_string: 'question matrix 2',
-//   answer_id: 8 },
-// { question_id: 17,
-//   question_type: 2,
-//   question_string: 'question matrix 3',
-//   answer_id: 9 },
-// { question_id: 4,
-//   question_type: 3,
-//   question_string: 'sample question 8',
-//   answer_id: 16 } ]
-// [ { question_id: 1,
-//   question_type: 1,
-//   question_string: 'sample question 1',
-//   answer_id: 2 },
-// { question_id: 2,
-//   question_type: 3,
-//   question_string: 'Question Heading',
-//   answer_id: 5 },
-// { question_id: 15,
-//   question_type: 3,
-//   question_string: 'question matrix 1',
-//   answer_id: 7 },
-// { question_id: 16,
-//   question_type: 3,
-//   question_string: 'question matrix 2',
-//   answer_id: 8 },
-// { question_id: 17,
-//   question_type: 2,
-//   question_string: 'question matrix 3',
-//   answer_id: 9 },
-// { question_id: 4,
-//   question_type: 3,
-//   question_string: 'sample question 8',
-//   answer_id: 16 } ]
-// [ { question_id: 1,
-//   question_type: 1,
-//   question_string: 'sample question 1',
-//   answer_id: 2 },
-// { question_id: 2,
-//   question_type: 3,
-//   question_string: 'Question Heading',
-//   answer_id: 5 },
-// { question_id: 15,
-//   question_type: 3,
-//   question_string: 'question matrix 1',
-//   answer_id: 7 },
-// { question_id: 16,
-//   question_type: 3,
-//   question_string: 'question matrix 2',
-//   answer_id: 8 },
-// { question_id: 17,
-//   question_type: 2,
-//   question_string: 'question matrix 3',
-//   answer_id: 9 },
-// { question_id: 4,
-//   question_type: 3,
-//   question_string: 'sample question 8',
-//   answer_id: 16 } ]
-// [ { question_id: 1,
-//   question_type: 1,
-//   question_string: 'sample question 1',
-//   answer_id: 2 },
-// { question_id: 2,
-//   question_type: 3,
-//   question_string: 'Question Heading',
-//   answer_id: 5 },
-// { question_id: 15,
-//   question_type: 3,
-//   question_string: 'question matrix 1',
-//   answer_id: 7 },
-// { question_id: 16,
-//   question_type: 3,
-//   question_string: 'question matrix 2',
-//   answer_id: 8 },
-// { question_id: 17,
-//   question_type: 2,
-//   question_string: 'question matrix 3',
-//   answer_id: 9 },
-// { question_id: 4,
-//   question_type: 3,
-//   question_string: 'sample question 8',
-//   answer_id: 16 } ]
-// [ { question_id: 1,
-//   question_type: 1,
-//   question_string: 'sample question 1',
-//   answer_id: 2 },
-// { question_id: 2,
-//   question_type: 3,
-//   question_string: 'Question Heading',
-//   answer_id: 5 },
-// { question_id: 15,
-//   question_type: 3,
-//   question_string: 'question matrix 1',
-//   answer_id: 7 },
-// { question_id: 16,
-//   question_type: 3,
-//   question_string: 'question matrix 2',
-//   answer_id: 8 },
-// { question_id: 17,
-//   question_type: 2,
-//   question_string: 'question matrix 3',
-//   answer_id: 9 },
-// { question_id: 4,
-//   question_type: 3,
-//   question_string: 'sample question 8',
-//   answer_id: 16 } ]
-
-[{
-  QUESTION_ID: 1,
+[{ 
+  QUESTION_ID: 0,
+  SUB_QUESTION_ID: null,
   QUESTION_TYPE: 1,
-  QUESTION_STRING: 'Does your institution require or recommend a general colle
-ge-preparatory program for degree - seeking students?',
-  ANSWER_ID: 2
-},
-{
-  QUESTION_ID: 2,
-  QUESTION_TYPE: 4,
-  QUESTION_STRING: 'Distribution of high school units required and/or recommen
-ded. (CDS C5) Specify the distribution of academic high school course units requ
-ired and / or recommended of all or most degree - seeking students using Carnegie un
-its(one unit equals one year of study or its equivalent).If you use a differen
-t system for calculating units, please convert.',
-  ANSWER_ID: 2 },
-{
-  QUESTION_ID: 4,
-  QUESTION_TYPE: 2,
-  QUESTION_STRING: 'Open admission policy as described above for most students
-  , but',
-  ANSWER_ID: 4
-},
-{
-  QUESTION_ID: 15,
-  QUESTION_TYPE: 4,
-  QUESTION_STRING: 'Academic electives',
-  ANSWER_ID: 2
-},
-{
-  QUESTION_ID: 16,
-  QUESTION_TYPE: 4,
-  QUESTION_STRING: 'Computer Science',
-  ANSWER_ID: 2
-},
-{
-  QUESTION_ID: 17,
-  QUESTION_TYPE: 4,
-  QUESTION_STRING: 'Visual, Performing Arts',
-  ANSWER_ID: 2
+  QUESTION_STRING: 'Check the appropriate box to identify your high school completion requirement for degree-seeking entering students',
+  ANSWER_ID: 1,
+  ANSWER_SET: [{"ans": "Yes"}, {"ans": "No"}, {"ans": "Maybe"}] 
 }]
+
+
+
+
+let mapResponse = JSON.stringify(
+  [ { QUESTION_ID: 0,
+    SUB_QUESTION_ID: null,
+    QUESTION_TYPE: 1,
+    QUESTION_STRING: 'Check the appropriate box to identify your high school completion requirement for degree-seeking entering students',
+    ANSWER_ID: 1,
+    ANSWER_SET: 'Require Recommend>Neither require nor recommend>No answer ' },
+  { QUESTION_ID: 2,
+    SUB_QUESTION_ID: '8',
+    QUESTION_TYPE: 4,
+    QUESTION_STRING: 'Distribution of high school units required and/or recommen
+ded. (CDS C5) Specify the distribution of academic high school course units requ
+ired and/or recommended of all or most degree-seeking students using Carnegie un
+its (one unit equals one year of study or its equivalent). If you use a differen
+t system for calculating units, please convert.',
+    ANSWER_ID: 2,
+    ANSWER_SET: 'Units Required>Units Recommended' },
+  { QUESTION_ID: 2,
+    SUB_QUESTION_ID: '9',
+    QUESTION_TYPE: 4,
+    QUESTION_STRING: 'Distribution of high school units required and/or recommen
+ded. (CDS C5) Specify the distribution of academic high school course units requ
+ired and/or recommended of all or most degree-seeking students using Carnegie un
+its (one unit equals one year of study or its equivalent). If you use a differen
+t system for calculating units, please convert.',
+    ANSWER_ID: 2,
+    ANSWER_SET: 'Units Required>Units Recommended' },
+  { QUESTION_ID: 2,
+    SUB_QUESTION_ID: '10',
+    QUESTION_TYPE: 4,
+    QUESTION_STRING: 'Distribution of high school units required and/or recommen
+ded. (CDS C5) Specify the distribution of academic high school course units requ
+ired and/or recommended of all or most degree-seeking students using Carnegie un
+its (one unit equals one year of study or its equivalent). If you use a differen
+t system for calculating units, please convert.',
+    ANSWER_ID: 2,
+    ANSWER_SET: 'Units Required>Units Recommended' },
+  { QUESTION_ID: 2,
+    SUB_QUESTION_ID: '11',
+    QUESTION_TYPE: 4,
+    QUESTION_STRING: 'Distribution of high school units required and/or recommen
+ded. (CDS C5) Specify the distribution of academic high school course units requ
+ired and/or recommended of all or most degree-seeking students using Carnegie un
+its (one unit equals one year of study or its equivalent). If you use a differen
+t system for calculating units, please convert.',
+    ANSWER_ID: 2,
+    ANSWER_SET: 'Units Required>Units Recommended' }
+  ]
+
+)
+
+console.log(mapResponse);

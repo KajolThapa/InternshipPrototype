@@ -175,16 +175,17 @@ function buildQuestionMapping(queryReturn, cb){
     cb(questionListMapping);
 }
 
-function testingAns(sample){
-    let sql = "select * from answers_bank where answer_id = "+sample;
-    openConnection(sql, [], (data)=>{
-        let sample = data[0].ANSWER_SET.split('>');
-        sample.forEach((data=>{
-            console.log(data);
-        }))
-    })
-}
+// function testingAns(sample){
+//     let sql = "select * from answers_bank where answer_id = "+sample;
+//     openConnection(sql, [], (data)=>{
+//         // let sample = data[0].ANSWER_SET.split('>');
+//         // sample.forEach((data=>{
+//             console.log(data);
+//         // }))
+//     })
+// }
 
-testingAns(3);
+// testingAns(3);
+// testingAns()
 
 

@@ -118,7 +118,7 @@ function rebuildMapForRender(questionListMapping, questionData, answerSet, callb
         let hasAnsID = answerSet.find(sameAnswerId);
         return Object.assign({}, questionReference, hasAnsID);
     });
-    console.log(mergedAnswers);
+    // console.log(mergedAnswers);
 
     let finalSurveyQuestionSet = questionListMapping.map((questionRenderMap)=>{
         let checkQuestionId = (questionSet) => questionSet.QUESTION_ID == questionRenderMap.QUESTION_ID;
@@ -126,12 +126,14 @@ function rebuildMapForRender(questionListMapping, questionData, answerSet, callb
         let hasQuestionId = mergedAnswers.find(checkQuestionId, checkSubQuestionId);
         return Object.assign({}, questionRenderMap, hasQuestionId);
     })
+    // console.log(finalSurveyQuestionSet);
     callback(finalSurveyQuestionSet);
 }
 
 function getAnswerSet(questionListMapping, questionData, callback){
     let sql = "select * from answers_bank where answer_id = :id";
     let answerIdList = [];
+    // console.log(questionData);
     questionData.forEach((data=>{
         answerIdList.push(data.ANSWER_ID);
     }));
@@ -140,6 +142,10 @@ function getAnswerSet(questionListMapping, questionData, callback){
         sql += " OR answer_id = :id";
     }
     openConnection(sql, answerIdList, (answerSet)=>{
+        answerSet.forEach((data, index)=>{
+            answerSet[index].ANSWER_SET = JSON.parse(data.ANSWER_SET);
+        })
+        console.log("AnswerSet::: "+ answerSet);
         callback(null, questionListMapping, questionData, answerSet);
     })
 }
