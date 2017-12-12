@@ -40,40 +40,16 @@ router.post('/getsurveylist', function(req, res){
 router.post('/survey', function(req, res){
 // router.get('/survey/:email/:deptid/:surveyId', function(req, res){
     // Maybe we have to add pooling?
+    console.log(req.body.startSurvey);
     // https://github.com/oracle/node-oracledb/blob/cd1eb6eb406296259ca23fa9e7ed148c2baab090/examples/webapp.js
-    db.getSurveyQuestionList(req.body.startSurvey, function(data){
-        let questionIdList = data[0].SURVEY_QUESTIONS.split(','); // Yeah...
-        // THE STORAGE OF QUESTIONS NEEDS TO BE FIXED. OVERRIDING THE QUERY RESULTS
-        questionIdList = [15, 17, 18];
-        let questionBuild = [];
-        // Array.prototype.forEach() does not apply to callbacks. 
-        // Can't be used to append data to the array
-        async.each(
-            questionIdList, // array of data
-            (item, callback)=>{
-                callback(
-                    db.getQuestionData(item, function(data){
-                        questionBuild.push(data[0]);
-                        console.log(data[0]);
-                    })
-                )
-            }, 
-            function(err, result){
-                if(err){
-                    console.log(err);
-                    return;
-                }
-                console.log("result:: " + questionBuild);
-            }
-            
-        )   
+    dbTesting.getQuestionsBySurveyId(req.body.startSurvey, function(data){
+        // console.log(data);
+        res.render('forms/survey', {
+            email: req.body.email,
+            deptId: req.body.deptID,
+            surveyData: data
+        });
     })
-    // console.log("Post survey:: "+ JSON.stringify(req.body));
-    res.render('forms/survey', {
-        email: req.body.email,
-        deptId: req.body.deptID,
-        surveyData: surveyQuestions
-    });
 });
 
 router.post('/submit', function(req, res){
@@ -94,8 +70,8 @@ router.post('/submit', function(req, res){
 //     console.log(data);
 // })
 
-dbTesting.getQuestionsBySurveyId(1, (data)=>{
-    console.log(data);
-})
+// db.testingAns((data)=>{
+//     console.log(data);
+// })
 
 module.exports = router;

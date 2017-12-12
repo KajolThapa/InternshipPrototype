@@ -175,10 +175,16 @@ function buildQuestionMapping(queryReturn, cb){
     cb(questionListMapping);
 }
 
-// buildQuestionMapping(['1', '2_15', '2_16', '2_17', '4'], function(data){
-//     console.log("Return from mapping:: "+data);
-// }) 
+function testingAns(sample){
+    let sql = "select * from answers_bank where answer_id = "+sample;
+    openConnection(sql, [], (data)=>{
+        let sample = data[0].ANSWER_SET.split('>');
+        sample.forEach((data=>{
+            console.log(data);
+        }))
+    })
+}
 
-
+testingAns(3);
 
 
