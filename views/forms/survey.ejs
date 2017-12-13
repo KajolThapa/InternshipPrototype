@@ -26,7 +26,7 @@
                                             %>
                                                 <div class="radio">
                                                     <label class="form-check-label">
-                                                        <input class="form-check-input" name="<%=data.id%>" type="radio" value="<%=answerSet.ans%>"/>
+                                                        <input class="form-check-input" name="<%=data.QUESTION_ID%>" type="radio" value="<%=answerSet.ans%>"/>
                                                         <%=answerSet.ans%>
                                                     </label>
                                                 </div>
@@ -42,7 +42,7 @@
                                             %>
                                                 <div class="checkbox">
                                                     <label>
-                                                        <input type="checkbox" name="<%=data.id%>" value="<%=answerSet.ans%>"/>
+                                                        <input type="checkbox" name="<%=data.QUESTION_ID%>" value="<%=answerSet.ans%>"/>
                                                         <%=answerSet.ans%>
                                                     </label>
                                                 </div>
@@ -50,48 +50,13 @@
                                         }
                                     )%>   
                                 <% } else if (data.QUESTION_TYPE === 3) { %>
-                                    <label class="question-type">
-                                        <%=index+1%>) <%=data.QUESTION_STRING%>
-                                    </label>
-                                    <table class="table">
-                                        <thead class="thead">
-                                            <tr>
-                                                <th></th> <!-- This is left empty to maintain spacing-->
-                                                <%data.answerKey[0].heading.forEach(
-                                                    heading => {
-                                                        %>
-                                                            <th class="center-cell"><%=heading.head%></th>
-                                                        <%
-                                                    }
-                                                )%>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <%data.answerKey[1].ansMatrix.forEach(
-                                                (matrixSet, subIndex) => {
-                                                    %>
-                                                        <tr>
-                                                        <!-- 
-                                                            Went with a standard for loop since the original data structure needed to skip the first two elements present.
-                                                            This is no longer the case, so this should eventually be refactored to a for-each
-                                                        -->
-                                                        <% for(var sub = 0; sub<matrixSet.set.length; sub++){ %>
-                                                            <!-- The first element in each set is the label of the matrix row. It's the description for the scale-->
-                                                            <% if (sub<1) { %>
-                                                                <td><%=matrixSet.set[sub].ans%></td>
-                                                            <% } else { %>
-                                                                <!---->
-                                                                <td class="center-cell"><input type="radio" name="<%=data.id%>_<%=subIndex%>" value="<%=matrixSet.set[sub].ans%>"/></td>
-                                                            <% } %>
-                                                        <% } %>
-                                                        </tr>
-                                                    <%
-                                                }
-                                            )%>
-                                        </tbody>
-                                    </table>
+                                    <h2>QUESTION TYPE 3</h2>
+                                    <%=JSON.stringify(data)%>;
+                                <% } else if (data.QUESTION_TYPE === 4) { %>
+                                    <h2>QUESTION TYPE 4</h2>
+                                    <%=JSON.stringify(data)%>;                                                   
                                 <% } else { %>
-                                    <p><%=JSON.stringify(data)%></p>
+                                    
                                 <% } %>
                             </div>
                         <%
