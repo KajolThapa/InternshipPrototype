@@ -4,6 +4,7 @@
         <div class="survey">
 
             <h4><%=surveyId%></h4>
+            <h4><%=deptId%></h4>
             <form name="surveyName" method="POST" class="form-horizontal" action="/submit">
                 <input type="hidden" name="email" value="<%=email%>"/>
                 <input type="hidden" name="deptId" value="<%=deptId%>"/>
@@ -49,14 +50,6 @@
                                             <%
                                         }
                                     )%>   
-                                <% } else if (data.QUESTION_TYPE === 3) { %>
-                                    <h2>QUESTION TYPE 3</h2>
-                                    <%=JSON.stringify(data)%>;
-                                <% } else if (data.QUESTION_TYPE === 4) { %>
-                                    <h2>QUESTION TYPE 4</h2>
-                                    <%=JSON.stringify(data)%>;                                                   
-                                <% } else { %>
-                                    
                                 <% } %>
                             </div>
                         <%

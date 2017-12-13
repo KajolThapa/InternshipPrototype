@@ -47,7 +47,7 @@ exports.getQuestionsBySurveyId = function(surveyId, queryReturn){
 
 function getQuestionList(surveyId, cb){
     return function(cb){
-        let sql = "select survey_question from survey where survey_id = " + surveyId;
+        let sql = "select survey_question_set from survey where survey_id = " + surveyId;
         openConnection(sql, [], (data)=>{
             cb(null, data);
         })
@@ -55,8 +55,11 @@ function getQuestionList(surveyId, cb){
 }
 
 function cleanQuestionIds(queryReturn, callback){
-    let parsedQuestionsList = queryReturn[0].SURVEY_QUESTION.split(',');
-    callback(null, parsedQuestionsList);    
+    //console.log(queryReturn);
+    let parsedQuestionsList = queryReturn[0].SURVEY_QUESTION_SET.split(',');
+    callback(null, parsedQuestionsList); 
+
+
 
 }
 
@@ -66,6 +69,7 @@ function buildQuestionMappingAndQuerySet(queryReturn, cb){
         let questionQueryList;
 
         let sql = "select * from questions_bank where question_id = :id";
+       // console.log(queryReturn);
         
         queryReturn.forEach((data, index)=>{
             if(data.includes('_')){
@@ -141,11 +145,17 @@ function getAnswerSet(questionListMapping, questionData, callback){
     for(i = 0; i <answerIdList.length-1; i++){
         sql += " OR answer_id = :id";
     }
-    openConnection(sql, answerIdList, (answerSet)=>{
-        answerSet.forEach((data, index)=>{
-            answerSet[index].ANSWER_SET = JSON.parse(data.ANSWER_SET);
+    openConnection(sql, answerIdList, function(answerArray){
+        console.log(answerArray);
+        answerArray.forEach((data, index)=>{
+            answerArray[index].ANSWER_SET = JSON.parse(data.ANSWER_SET);
         })
-        console.log("AnswerSet::: "+ answerSet);
-        callback(null, questionListMapping, questionData, answerSet);
+        console.log("AnswerSet::: "+ answerArray);
+        callback(null, questionListMapping, questionData, answerArray);
     })
 }
+
+// { ANSWER_ID: 11,
+//     ANSWER_SET: ' [{"ans":"Bachelors"},{"ans":"Masters"},{"ans":"Associate",{"ans":"PHD"}] ' },
+//   { ANSWER_ID: 12,
+//     ANSWER_SET: ' [{"ans":"Full-Time"},{"ans":"Part-Time"},{"ans":"Intern",{"ans":"Volunteer"}] ' } ]
