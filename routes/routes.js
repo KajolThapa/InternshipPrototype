@@ -66,8 +66,7 @@ router.post('/submit', function(req, res){
     });
     // INSERT INTO QUESTIONS_BANK VALUES(questions_bank_sequence.nextval, 4,'History', 2);
     let sql = "INSERT INTO SURVEY_ANSWERS VALUES (survey_answers_sequence, 0, (:questionId), 'chips', (:answerSelected)";
-    // INSERT INTO MyTable ( Column1, Column2 ) VALUES
-    // ( Value1, Value2 ), ( Value1, Value2 )
+    let binding = [questionIdArray, answerIdArray];
 
 })
 
