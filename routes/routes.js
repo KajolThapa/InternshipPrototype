@@ -64,12 +64,41 @@ router.post('/submit', function(req, res){
         questionIdArray.push(question_id);
         answerIdArray.push(obj[question_id]);
     });
+
+    console.log(questionIdArray);
+    console.log(answerIdArray);
     // INSERT INTO QUESTIONS_BANK VALUES(questions_bank_sequence.nextval, 4,'History', 2);
     let sql = "INSERT INTO SURVEY_ANSWERS VALUES (survey_answers_sequence, 0, (:questionId), 'chips', (:answerSelected)";
     // INSERT INTO MyTable ( Column1, Column2 ) VALUES
     // ( Value1, Value2 ), ( Value1, Value2 )
 
 })
+
+// [ '0',
+// '1',
+// '3',
+// '4',
+// '10',
+// '12',
+// '15',
+// '16',
+// '19',
+// 'email',
+// 'deptId',
+// 'data.QUESTION_ID' ]
+// [ 'Neither require nor recommend',
+// 'Units Recommended',
+// 'No',
+// 'Selective admissions to some programs',
+// 'No answer',
+// 'No answer',
+// 'Printing',
+// 'Yes',
+// 'Part-Time',
+// 'undefined',
+// '',
+// [ 'asd', 'eg', 'sdfsf', 'sdfsdf', 'qwqw', 'ppp' ] ]
+
 
 // db.getQuestionsBySurveyId(1, (data)=>{
 //     console.log(data);

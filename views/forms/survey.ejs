@@ -18,7 +18,14 @@
                     (data, index) => {
                         %>
                             <div class="form-group">
-                                <% if (data.QUESTION_TYPE === 1) { %>
+                                <% if (data.QUESTION_TYPE === 0) { %>
+                                    <label class="question-type">
+                                        <%=index+1%>) <%=data.QUESTION_STRING%>
+                                    </label> 
+                                    <div class="form-group">
+                                        <input name="<%=data.QUESTION_ID%>" type="text" required class="form-control stored" />
+                                    </div>
+                                <% } else if (data.QUESTION_TYPE === 1) { %>
                                     <label class="question-type">
                                         <%=index+1%>) <%=data.QUESTION_STRING%>
                                     </label>
