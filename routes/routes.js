@@ -55,21 +55,9 @@ router.post('/survey', function(req, res){
 });
 
 router.post('/submit', function(req, res){
-    var obj = req.body;
-    
-    let questionIdArray = [],
-        answerIdArray = [];
-
-    Object.keys(obj).forEach(function(question_id){
-        questionIdArray.push(question_id);
-        answerIdArray.push(obj[question_id]);
-    });
-
-    console.log(questionIdArray);
-    console.log(answerIdArray);
-    // INSERT INTO QUESTIONS_BANK VALUES(questions_bank_sequence.nextval, 4,'History', 2);
-    let sql = "INSERT INTO SURVEY_ANSWERS VALUES (survey_answers_sequence, 0, (:questionId), 'chips', (:answerSelected)";
-    let binding = [questionIdArray, answerIdArray];
+    dbTesting.storeSurveyAnswers(req.body, function(data){
+        res.send(data);
+    })
 
 })
 

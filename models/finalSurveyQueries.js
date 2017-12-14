@@ -155,6 +155,30 @@ function getAnswerSet(questionListMapping, questionData, callback){
     })
 }
 
+
+exports.storeSurveyAnswers = function(obj, callback){
+    
+    let questionIdArray = [],
+        answerIdArray = [];
+
+    Object.keys(obj).forEach(function(question_id){
+        questionIdArray.push(question_id);
+        answerIdArray.push(obj[question_id]);
+    });
+
+    console.log(questionIdArray);
+    console.log(answerIdArray);
+    // INSERT INTO SURVEY_ANSWERS VALUES (survey_answers_sequence, 0, (:questionId), 'chips', (:answerSelected)
+    let sql = "INSERT ALL";
+    questionIdArray.forEach((data, index)=>{
+        sql += " INTO SURVEY_ANSWERS VALUES (survey_answers_sequence, 0, '" + questionIdArray[index] + "', 'AnsId', '" + answerIdArray[index] + "')" 
+    })
+    // let binding = [questionIdArray, answerIdArray];
+    openConnection(sql, [], function(insertStatus){
+        callback(insertStatus);
+    })
+}
+
 // { ANSWER_ID: 11,
 //     ANSWER_SET: ' [{"ans":"Bachelors"},{"ans":"Masters"},{"ans":"Associate",{"ans":"PHD"}] ' },
 //   { ANSWER_ID: 12,
